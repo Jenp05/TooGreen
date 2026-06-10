@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fonctionnalités — TooGreen</title>
   <link rel="icon" href="logo.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0D3D25" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="TooGreen" />
+  <link rel="apple-touch-icon" href="logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
@@ -23,6 +30,7 @@
         <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
         <li><a href="impact.html">Impact</a></li>
         <li><a href="assistant.html">Assistant IA</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
       </ul>
       <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
       <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -100,6 +108,7 @@
           <a href="fonctionnalites.html">Fonctionnalités</a>
           <a href="impact.html">Impact</a>
           <a href="assistant.html">Assistant IA</a>
+          <a href="equipe.html">Équipe</a>
         </div>
         <div class="footer-col">
           <h4>Légal</h4>
@@ -116,9 +125,15 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 TooGreen — Fait avec 💚 en France — Licence MIT</p>
+      <p>© 2025 TooGreen — Fait avec 💚 en France par <a href="equipe.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Jean-Paul Vu &amp; Gabriel Xiang</a> — Licence MIT</p>
     </div>
   </footer>
+
+  <div id="installBanner" class="install-banner" style="display:none">
+    <span class="install-banner-text">📱 Installer TooGreen comme app</span>
+    <button class="install-btn-yes" id="installBtn">Installer</button>
+    <button class="install-btn-close" onclick="document.getElementById('installBanner').style.display='none'">✕</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
