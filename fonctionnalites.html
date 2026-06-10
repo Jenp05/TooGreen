@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fonctionnalités — TooGreen</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="TooGreen Logo" class="nav-logo-img" />
+        <span class="nav-logo-text">TooGreen</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="assistant.html">Assistant IA</a></li>
+      </ul>
+      <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======================== FEATURES ======================== -->
+  <section class="features page-top" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Fonctionnalités</span>
+        <h2 class="section-title">Tout ce dont vous avez besoin<br/>pour agir au quotidien</h2>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card glass-card" data-delay="0">
+          <div class="feature-icon">🌱</div>
+          <h3>Bilan Carbone</h3>
+          <p>Calculez et suivez votre empreinte carbone personnelle avec un tableau de bord intuitif et des recommandations personnalisées.</p>
+          <a href="#" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card glass-card" data-delay="100">
+          <div class="feature-icon">♻️</div>
+          <h3>Guide du Tri</h3>
+          <p>Accédez à un guide complet du tri sélectif adapté à votre commune française. Ne vous trompez plus jamais de bac.</p>
+          <a href="#" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card glass-card" data-delay="200">
+          <div class="feature-icon">🚲</div>
+          <h3>Mobilité Verte</h3>
+          <p>Comparez vos trajets et découvrez des alternatives éco-responsables : vélo, covoiturage, transports en commun.</p>
+          <a href="#" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card glass-card" data-delay="300">
+          <div class="feature-icon">🥗</div>
+          <h3>Alimentation Durable</h3>
+          <p>Découvrez des recettes locales et de saison, réduisez le gaspillage alimentaire et consommez plus sainement.</p>
+          <a href="#" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card glass-card" data-delay="400">
+          <div class="feature-icon">💡</div>
+          <h3>Énergie & Habitat</h3>
+          <p>Analysez votre consommation énergétique et obtenez des conseils pour réduire vos factures tout en préservant la planète.</p>
+          <a href="#" class="feature-link">Explorer →</a>
+        </div>
+
+        <div class="feature-card glass-card feature-card-highlight" data-delay="500">
+          <div class="feature-icon">🤖</div>
+          <h3>Assistant IA</h3>
+          <p>Votre conseiller vert personnel, disponible 24h/24. Posez vos questions, obtenez des conseils adaptés à votre vie.</p>
+          <a href="assistant.html" class="feature-link">Essayer →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TooGreen" class="footer-logo" />
+        <span>TooGreen</span>
+        <p>Open source • Hébergé en France 🇫🇷</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Plateforme</h4>
+          <a href="fonctionnalites.html">Fonctionnalités</a>
+          <a href="impact.html">Impact</a>
+          <a href="assistant.html">Assistant IA</a>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">CGU</a>
+        </div>
+        <div class="footer-col">
+          <h4>Open Source</h4>
+          <a href="#">GitHub</a>
+          <a href="#">Contribuer</a>
+          <a href="#">Licence MIT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 TooGreen — Fait avec 💚 en France — Licence MIT</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

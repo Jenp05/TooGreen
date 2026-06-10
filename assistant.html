@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistant IA — TooGreen</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="TooGreen Logo" class="nav-logo-img" />
+        <span class="nav-logo-text">TooGreen</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="assistant.html">Assistant IA</a></li>
+      </ul>
+      <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======================== AI ASSISTANT ======================== -->
+  <section class="assistant-section page-top" id="assistant">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-eyebrow">Assistant IA</span>
+        <h2 class="section-title">Votre conseiller vert<br/>personnel</h2>
+        <p class="section-sub">Posez toutes vos questions sur l'écologie, le développement durable et les gestes verts du quotidien.</p>
+      </div>
+      <div class="chat-wrapper glass-card">
+        <div class="chat-header">
+          <div class="chat-avatar">
+            <img src="logo.png" alt="TooGreen AI" />
+          </div>
+          <div class="chat-info">
+            <strong>TooGreen Assistant</strong>
+            <span class="status-dot"></span><em>En ligne</em>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-avatar"><img src="logo.png" alt="" /></div>
+            <div class="message-bubble">
+              👋 Bonjour ! Je suis votre assistant TooGreen. Posez-moi vos questions sur l'écologie, le tri des déchets, la mobilité verte, ou l'alimentation durable. Je suis là pour vous aider à vivre plus vert ! 🌿
+            </div>
+          </div>
+        </div>
+        <div class="chat-suggestions">
+          <button class="suggestion-chip" onclick="sendSuggestion(this)">Comment réduire mon empreinte carbone ?</button>
+          <button class="suggestion-chip" onclick="sendSuggestion(this)">Que mettre dans le bac jaune ?</button>
+          <button class="suggestion-chip" onclick="sendSuggestion(this)">Alternatives à la voiture en ville ?</button>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Posez votre question eco-friendly..." class="chat-input" />
+          <button class="chat-send" id="sendBtn" onclick="sendMessage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TooGreen" class="footer-logo" />
+        <span>TooGreen</span>
+        <p>Open source • Hébergé en France 🇫🇷</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Plateforme</h4>
+          <a href="fonctionnalites.html">Fonctionnalités</a>
+          <a href="impact.html">Impact</a>
+          <a href="assistant.html">Assistant IA</a>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">CGU</a>
+        </div>
+        <div class="footer-col">
+          <h4>Open Source</h4>
+          <a href="#">GitHub</a>
+          <a href="#">Contribuer</a>
+          <a href="#">Licence MIT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 TooGreen — Fait avec 💚 en France — Licence MIT</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

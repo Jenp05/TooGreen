@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notre Impact — TooGreen</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="TooGreen Logo" class="nav-logo-img" />
+        <span class="nav-logo-text">TooGreen</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="assistant.html">Assistant IA</a></li>
+      </ul>
+      <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ======================== IMPACT ======================== -->
+  <section class="impact page-top" id="impact">
+    <div class="impact-bg">
+      <div class="orb orb-4"></div>
+    </div>
+    <div class="section-container">
+      <div class="impact-layout">
+        <div class="impact-text">
+          <span class="section-eyebrow">Notre Impact</span>
+          <h2 class="section-title">Ensemble,<br/>nous faisons la différence</h2>
+          <p class="impact-desc">Chaque geste compte. Rejoignez une communauté engagée qui prouve chaque jour qu'un mode de vie durable est possible, agréable et accessible à tous.</p>
+          <ul class="impact-list">
+            <li><span class="check">✓</span> Données localisées pour la France</li>
+            <li><span class="check">✓</span> Hébergement 100% européen</li>
+            <li><span class="check">✓</span> Open source & respectueux de vos données</li>
+            <li><span class="check">✓</span> Zéro publicité, zéro revente de données</li>
+          </ul>
+          <button class="btn-primary" onclick="location.href='assistant.html'">
+            <span>Rejoindre le mouvement</span>
+          </button>
+        </div>
+        <div class="impact-cards">
+          <div class="impact-metric glass-card">
+            <div class="metric-icon">🌍</div>
+            <div class="metric-value counter" data-target="2.3">0</div>
+            <div class="metric-unit">T CO₂/an</div>
+            <div class="metric-label">économisées en moyenne par utilisateur</div>
+          </div>
+          <div class="impact-metric glass-card">
+            <div class="metric-icon">🌳</div>
+            <div class="metric-value counter" data-target="4200">0</div>
+            <div class="metric-unit">arbres</div>
+            <div class="metric-label">équivalent planté grâce à la communauté</div>
+          </div>
+          <div class="impact-metric glass-card">
+            <div class="metric-icon">⚡</div>
+            <div class="metric-value counter" data-target="680">0</div>
+            <div class="metric-unit">MWh</div>
+            <div class="metric-label">d'énergie renouvelable encouragée</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TooGreen" class="footer-logo" />
+        <span>TooGreen</span>
+        <p>Open source • Hébergé en France 🇫🇷</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Plateforme</h4>
+          <a href="fonctionnalites.html">Fonctionnalités</a>
+          <a href="impact.html">Impact</a>
+          <a href="assistant.html">Assistant IA</a>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">CGU</a>
+        </div>
+        <div class="footer-col">
+          <h4>Open Source</h4>
+          <a href="#">GitHub</a>
+          <a href="#">Contribuer</a>
+          <a href="#">Licence MIT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 TooGreen — Fait avec 💚 en France — Licence MIT</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
