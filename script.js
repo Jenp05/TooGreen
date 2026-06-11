@@ -11,9 +11,25 @@ window.addEventListener('scroll', () => {
 /* ---- Hamburger menu ---- */
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+
+hamburger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = navLinks.classList.toggle('open');
+  hamburger.classList.toggle('open', isOpen);
+});
+
+navLinks.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+    navLinks.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
 });
 
 /* ---- Active nav link ---- */
@@ -204,37 +220,10 @@ if (chatInput) {
   });
 }
 
-/* ================================================
-   PWA — Service Worker + Install Banner
-   ================================================ */
+/* Désinstalle tout service worker existant */
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(r => r.unregister());
   });
 }
 
-let deferredInstallPrompt = null;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredInstallPrompt = e;
-  const banner = document.getElementById('installBanner');
-  if (banner) banner.style.display = 'flex';
-});
-
-const installBtn = document.getElementById('installBtn');
-if (installBtn) {
-  installBtn.addEventListener('click', async () => {
-    if (!deferredInstallPrompt) return;
-    deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice;
-    deferredInstallPrompt = null;
-    document.getElementById('installBanner').style.display = 'none';
-  });
-}
-
-window.addEventListener('appinstalled', () => {
-  const banner = document.getElementById('installBanner');
-  if (banner) banner.style.display = 'none';
-  deferredInstallPrompt = null;
-});

@@ -1,0 +1,27 @@
+{
+  "name": "TooGreen — Vivez Plus Vert",
+  "short_name": "TooGreen",
+  "description": "Plateforme éco-responsable pour réduire votre empreinte carbone et adopter des habitudes durables.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F0FFF4",
+  "theme_color": "#0D3D25",
+  "lang": "fr",
+  "orientation": "any",
+  "categories": ["lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
