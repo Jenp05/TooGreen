@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portefeuilles — TooGreen</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── PAGE BACKGROUND ── */
+    .portfolios-page {
+      min-height: 100vh;
+      padding: 120px 0 80px;
+      background: linear-gradient(160deg, #e8f5ee 0%, #d4eedf 30%, #f0fff4 70%, #e0f7ea 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .portfolios-page .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: 0.35; pointer-events: none;
+    }
+    .pg-orb1 { width:500px;height:500px; background:radial-gradient(circle,#4CAF7A 0%,transparent 70%); top:-100px;left:-100px; }
+    .pg-orb2 { width:400px;height:400px; background:radial-gradient(circle,#1A6B3A 0%,transparent 70%); bottom:-80px;right:-80px; }
+
+    /* ── HOME VIEW ── */
+    #homeView { max-width:1200px; margin:0 auto; padding:0 24px; }
+    .page-eyebrow { text-align:center; margin-bottom:60px; }
+    .page-eyebrow p { margin-top:14px; font-size:1.05rem; color:var(--text-body); max-width:520px; margin-left:auto; margin-right:auto; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .cards-grid .pf-card:nth-child(4) { grid-column: 1 / 2; }
+    .cards-grid .pf-card:nth-child(5) { grid-column: 3 / 4; }
+
+    .pf-card {
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-glass);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .pf-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height:4px;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+    .pf-card.theme-safe::before    { background: linear-gradient(90deg, #2D8C52, #A8E6C3); }
+    .pf-card.theme-balanced::before{ background: linear-gradient(90deg, #1A6B3A, #4CAF7A); }
+    .pf-card.theme-growth::before  { background: linear-gradient(90deg, #B8860B, #F0C040); }
+    .pf-card.theme-impact::before  { background: linear-gradient(90deg, #0D3D25, #2D8C52); }
+    .pf-card.theme-future::before  { background: linear-gradient(90deg, #1565C0, #42A5F5); }
+
+    .pf-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 56px rgba(13,61,37,0.15);
+      background: rgba(255,255,255,0.85);
+    }
+    .pf-card-icon { font-size:2rem; margin-bottom:14px; }
+    .pf-card-name {
+      font-family: var(--font-display);
+      font-size:1.25rem; font-weight:700;
+      color: var(--forest); margin-bottom:4px;
+    }
+    .pf-card-tagline {
+      font-size:0.88rem; color:var(--text-muted);
+      font-style:italic; margin-bottom:20px; line-height:1.5;
+    }
+    .pf-card-badges {
+      display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;
+    }
+    .badge {
+      font-size:0.78rem; font-weight:600; padding:4px 12px;
+      border-radius:100px; background:rgba(45,140,82,0.1);
+      border:1px solid rgba(45,140,82,0.2); color:var(--green-deep);
+    }
+    .badge.risk-low  { background:rgba(76,175,122,0.12); border-color:rgba(76,175,122,0.3); color:#1A6B3A; }
+    .badge.risk-mid  { background:rgba(255,165,0,0.12);  border-color:rgba(255,165,0,0.3);  color:#B8680B; }
+    .badge.risk-high { background:rgba(220,80,80,0.1);   border-color:rgba(220,80,80,0.25); color:#C0392B; }
+
+    .pf-risk-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+    .pf-risk-label { font-size:0.8rem; color:var(--text-muted); font-weight:500; }
+    .risk-dots { display:flex; gap:4px; }
+    .risk-dot {
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(13,61,37,0.15);
+    }
+    .risk-dot.active.safe     { background:#2D8C52; }
+    .risk-dot.active.balanced { background:#1A6B3A; }
+    .risk-dot.active.growth   { background:#D4A017; }
+    .risk-dot.active.impact   { background:#0D3D25; }
+    .risk-dot.active.future   { background:#1565C0; }
+
+    .pf-score-row {
+      display:flex; align-items:center; justify-content:space-between;
+      padding-top:16px; border-top:1px solid rgba(13,61,37,0.07);
+    }
+    .pf-score-num {
+      font-family:var(--font-display); font-size:1.5rem;
+      font-weight:700; color:var(--forest);
+    }
+    .pf-score-label { font-size:0.75rem; color:var(--text-muted); }
+    .pf-return { text-align:right; }
+    .pf-return-num {
+      font-family:var(--font-display); font-size:1.4rem;
+      font-weight:700; color:var(--green-mid);
+    }
+    .pf-return-label { font-size:0.75rem; color:var(--text-muted); }
+
+    /* ── EXCLUSION BANNER ── */
+    .excl-banner {
+      text-align:center; margin-top:36px;
+      font-size:0.85rem; color:var(--text-muted);
+      padding:12px 20px; background:rgba(255,255,255,0.5);
+      border-radius:100px; display:inline-block;
+      border:1px solid rgba(13,61,37,0.1);
+    }
+    .excl-banner-wrap { text-align:center; }
+
+    /* ── DETAIL VIEW ── */
+    #detailView { display:none; max-width:1100px; margin:0 auto; padding:0 24px; }
+
+    .detail-top {
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px; margin-bottom:32px;
+    }
+    .back-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(13,61,37,0.15);
+      border-radius:100px; padding:10px 20px;
+      font-size:0.9rem; font-weight:600; color:var(--forest);
+      cursor:pointer; transition:var(--transition);
+    }
+    .back-btn:hover { background:rgba(255,255,255,0.9); }
+
+    .pf-selector {
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .pf-selector-btn {
+      font-family:var(--font-body); font-size:0.82rem; font-weight:600;
+      padding:8px 16px; border-radius:100px; cursor:pointer;
+      border:1.5px solid rgba(13,61,37,0.2);
+      background:rgba(255,255,255,0.6); color:var(--text-body);
+      transition:var(--transition);
+    }
+    .pf-selector-btn.active,
+    .pf-selector-btn:hover {
+      background:var(--forest); color:white; border-color:var(--forest);
+    }
+
+    .detail-header {
+      padding:36px 40px 32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow-glass);
+      margin-bottom:28px;
+      position:relative; overflow:hidden;
+    }
+    .detail-header::before {
+      content:''; position:absolute; top:0;left:0;right:0; height:5px;
+    }
+    .detail-header.theme-safe::before    { background:linear-gradient(90deg,#2D8C52,#A8E6C3); }
+    .detail-header.theme-balanced::before{ background:linear-gradient(90deg,#1A6B3A,#4CAF7A); }
+    .detail-header.theme-growth::before  { background:linear-gradient(90deg,#B8860B,#F0C040); }
+    .detail-header.theme-impact::before  { background:linear-gradient(90deg,#0D3D25,#2D8C52); }
+    .detail-header.theme-future::before  { background:linear-gradient(90deg,#1565C0,#42A5F5); }
+
+    .dh-top { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+    .dh-title { font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--forest); }
+    .dh-tagline { font-size:0.95rem; color:var(--text-muted); font-style:italic; margin-top:4px; }
+    .dh-kpis { display:flex; gap:28px; flex-wrap:wrap; }
+    .dh-kpi { text-align:center; }
+    .dh-kpi-val { font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:var(--forest); line-height:1; }
+    .dh-kpi-lbl { font-size:0.72rem; color:var(--text-muted); font-weight:500; text-transform:uppercase; letter-spacing:0.05em; }
+
+    /* ── TABS ── */
+    .tabs-nav {
+      display:flex; gap:4px; margin-bottom:28px;
+      background:rgba(255,255,255,0.5);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:100px; padding:5px;
+      width:fit-content;
+    }
+    .tab-btn {
+      font-family:var(--font-body); font-size:0.9rem; font-weight:600;
+      padding:10px 24px; border-radius:100px; border:none;
+      cursor:pointer; color:var(--text-muted);
+      background:transparent; transition:var(--transition);
+    }
+    .tab-btn.active {
+      background:var(--forest); color:white;
+      box-shadow:0 4px 16px rgba(13,61,37,0.25);
+    }
+    .tab-btn:hover:not(.active) { color:var(--forest); background:rgba(13,61,37,0.07); }
+
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ── TAB: RÉSUMÉ ── */
+    .resume-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .resume-card {
+      padding:28px 32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl); box-shadow:var(--shadow-glass);
+    }
+    .resume-card h3 {
+      font-size:0.8rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.1em; color:var(--green-mid); margin-bottom:20px;
+    }
+    .score-row { margin-bottom:14px; }
+    .score-row-top { display:flex; justify-content:space-between; margin-bottom:6px; }
+    .score-name { font-size:0.9rem; color:var(--text-body); font-weight:500; }
+    .score-val  { font-size:0.9rem; font-weight:700; color:var(--forest); }
+    .score-bar-bg {
+      height:8px; background:rgba(13,61,37,0.1); border-radius:100px; overflow:hidden;
+    }
+    .score-bar-fill {
+      height:100%; border-radius:100px;
+      background:linear-gradient(90deg,var(--green-deep),var(--green-light));
+      transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .profile-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+    .profile-list li {
+      display:flex; align-items:flex-start; gap:10px;
+      font-size:0.92rem; color:var(--text-body); line-height:1.5;
+    }
+    .profile-list li .check { flex-shrink:0; margin-top:2px; }
+
+    /* ── TAB: RÉPARTITION ── */
+    .repartition-layout {
+      display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center;
+      padding:32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl); box-shadow:var(--shadow-glass);
+    }
+    .chart-container { position:relative; max-width:320px; margin:0 auto; }
+    .pie-legend { display:flex; flex-direction:column; gap:12px; }
+    .pie-legend-item {
+      display:flex; align-items:center; gap:12px;
+      font-size:0.9rem; color:var(--text-body);
+    }
+    .legend-dot {
+      width:14px; height:14px; border-radius:4px; flex-shrink:0;
+    }
+    .legend-pct { font-weight:700; color:var(--forest); margin-left:auto; }
+    .funds-table-wrap {
+      margin-top:28px; padding:28px 32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl); box-shadow:var(--shadow-glass);
+    }
+    .funds-table-wrap h3 {
+      font-size:0.8rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.1em; color:var(--green-mid); margin-bottom:16px;
+    }
+    .funds-table { width:100%; border-collapse:collapse; }
+    .funds-table th {
+      font-size:0.78rem; font-weight:700; color:var(--text-muted);
+      text-transform:uppercase; letter-spacing:0.06em;
+      padding:8px 12px; text-align:left;
+      border-bottom:2px solid rgba(13,61,37,0.1);
+    }
+    .funds-table td {
+      padding:10px 12px; font-size:0.88rem; color:var(--text-body);
+      border-bottom:1px solid rgba(13,61,37,0.06);
+    }
+    .funds-table tr:last-child td { border-bottom:none; }
+    .funds-table td:last-child { font-weight:700; color:var(--green-deep); }
+    .fund-name-cell strong { display:block; color:var(--forest); font-weight:600; }
+    .fund-name-cell em { font-style:normal; font-size:0.8rem; color:var(--text-muted); }
+
+    /* ── TAB: SIMULATION ── */
+    .sim-wrap {
+      padding:28px 32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl); box-shadow:var(--shadow-glass);
+    }
+    .sim-amount-btns { display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; }
+    .amount-btn {
+      font-family:var(--font-body); font-size:0.9rem; font-weight:600;
+      padding:10px 22px; border-radius:100px;
+      border:2px solid rgba(13,61,37,0.2);
+      background:rgba(255,255,255,0.6); color:var(--text-body);
+      cursor:pointer; transition:var(--transition);
+    }
+    .amount-btn.active,
+    .amount-btn:hover { background:var(--forest); color:white; border-color:var(--forest); }
+
+    .sim-chart-wrap { position:relative; margin-bottom:8px; height:320px; }
+    .sim-legend {
+      display:flex; gap:20px; flex-wrap:wrap;
+      margin-bottom:20px; justify-content:center;
+    }
+    .sim-legend-item { display:flex; align-items:center; gap:7px; font-size:0.85rem; color:var(--text-body); }
+    .sim-legend-line { width:28px; height:3px; border-radius:2px; }
+
+    .legal-notice {
+      font-size:0.78rem; color:var(--text-muted); font-style:italic;
+      text-align:center; margin:12px 0 20px;
+      padding:10px 16px; background:rgba(13,61,37,0.04);
+      border-radius:10px; border:1px solid rgba(13,61,37,0.07);
+    }
+
+    .sim-table { width:100%; border-collapse:collapse; margin-top:4px; }
+    .sim-table th {
+      font-size:0.78rem; font-weight:700; color:var(--text-muted);
+      text-transform:uppercase; letter-spacing:0.06em;
+      padding:8px 12px; text-align:right; background:rgba(13,61,37,0.04);
+      border-bottom:2px solid rgba(13,61,37,0.1);
+    }
+    .sim-table th:first-child { text-align:left; }
+    .sim-table td {
+      padding:10px 12px; font-size:0.88rem; text-align:right;
+      border-bottom:1px solid rgba(13,61,37,0.06); color:var(--text-body);
+    }
+    .sim-table td:first-child { text-align:left; font-weight:600; color:var(--forest); }
+    .sim-table tr:last-child td { border-bottom:none; }
+    .col-prudent  { color:#64748b !important; }
+    .col-normal   { color:#1A6B3A !important; font-weight:600 !important; }
+    .col-favorable{ color:#D4A017 !important; }
+
+    /* ── TAB: IMPACT ── */
+    .impact-tab-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .impact-tab-card {
+      padding:28px 32px;
+      background:rgba(255,255,255,0.65);
+      border:1px solid rgba(255,255,255,0.8);
+      border-radius:var(--radius-xl); box-shadow:var(--shadow-glass);
+    }
+    .impact-tab-card h3 {
+      font-size:0.8rem; font-weight:700; text-transform:uppercase;
+      letter-spacing:0.1em; color:var(--green-mid); margin-bottom:20px;
+    }
+    .impact-big-num {
+      font-family:var(--font-display); font-size:3rem; font-weight:700;
+      color:var(--forest); line-height:1; margin-bottom:6px;
+    }
+    .impact-big-label { font-size:0.9rem; color:var(--text-body); line-height:1.5; }
+    .impact-big-sub { font-size:0.8rem; color:var(--text-muted); margin-top:4px; }
+
+    .causes-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .causes-list li {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.9rem; color:var(--text-body); font-weight:500;
+    }
+    .cause-dot {
+      width:10px; height:10px; border-radius:50%;
+      background:linear-gradient(135deg,var(--green-deep),var(--green-light));
+      flex-shrink:0;
+    }
+
+    .excl-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .excl-list li {
+      display:flex; align-items:center; gap:10px;
+      font-size:0.88rem; color:var(--text-body);
+    }
+    .excl-icon { font-size:1.1rem; flex-shrink:0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .cards-grid { grid-template-columns:repeat(2,1fr); }
+      .cards-grid .pf-card:nth-child(4),
+      .cards-grid .pf-card:nth-child(5) { grid-column:auto; }
+      .resume-grid { grid-template-columns:1fr; }
+      .repartition-layout { grid-template-columns:1fr; }
+      .impact-tab-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns:1fr; }
+      .tabs-nav { width:100%; border-radius:16px; }
+      .tab-btn { flex:1; font-size:0.8rem; padding:9px 10px; text-align:center; }
+      .dh-kpis { gap:16px; }
+      .sim-wrap, .resume-card, .repartition-layout,
+      .funds-table-wrap, .impact-tab-card { padding:20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="TooGreen Logo" class="nav-logo-img" />
+        <span class="nav-logo-text">TooGreen</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+        <li><a href="portefeuilles.html">Portefeuilles</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="assistant.html">Assistant IA</a></li>
+        <li><a href="equipe.html">Équipe</a></li>
+        <li class="nav-mobile-cta"><button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button></li>
+      </ul>
+      <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="portfolios-page">
+    <div class="orb pg-orb1"></div>
+    <div class="orb pg-orb2"></div>
+
+    <!-- ======================== HOME VIEW ======================== -->
+    <div id="homeView">
+      <div class="page-eyebrow">
+        <span class="section-eyebrow">Nos portefeuilles</span>
+        <h1 class="section-title">Investir vert, simplement.</h1>
+        <p>5 portefeuilles responsables, construits pour vous. Choisissez celui qui correspond à votre profil.</p>
+      </div>
+
+      <div class="cards-grid" id="cardsGrid"></div>
+
+      <div class="excl-banner-wrap" style="margin-top:36px;">
+        <span class="excl-banner">🚫 Tous les portefeuilles excluent : charbon · tabac · armes · jeux d'argent</span>
+      </div>
+    </div>
+
+    <!-- ======================== DETAIL VIEW ======================== -->
+    <div id="detailView">
+      <div class="detail-top">
+        <button class="back-btn" id="backBtn">← Tous les portefeuilles</button>
+        <div class="pf-selector" id="pfSelector"></div>
+      </div>
+
+      <div class="detail-header glass-card" id="detailHeader">
+        <div class="dh-top">
+          <div>
+            <div class="dh-title" id="dhTitle"></div>
+            <div class="dh-tagline" id="dhTagline"></div>
+          </div>
+          <div class="dh-kpis">
+            <div class="dh-kpi">
+              <div class="dh-kpi-val" id="dhRisk"></div>
+              <div class="dh-kpi-lbl">Risque</div>
+            </div>
+            <div class="dh-kpi">
+              <div class="dh-kpi-val" id="dhHorizon"></div>
+              <div class="dh-kpi-lbl">Horizon</div>
+            </div>
+            <div class="dh-kpi">
+              <div class="dh-kpi-val" id="dhReturn" style="color:var(--green-mid)"></div>
+              <div class="dh-kpi-lbl">Rendement estimé</div>
+            </div>
+            <div class="dh-kpi">
+              <div class="dh-kpi-val" id="dhScore"></div>
+              <div class="dh-kpi-lbl">Score TooGreen</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="resume">Résumé</button>
+        <button class="tab-btn" data-tab="repartition">Répartition</button>
+        <button class="tab-btn" data-tab="simulation">Simulation</button>
+        <button class="tab-btn" data-tab="impact">Impact</button>
+      </div>
+
+      <!-- TAB: RÉSUMÉ -->
+      <div class="tab-panel active" id="tab-resume">
+        <div class="resume-grid">
+          <div class="resume-card">
+            <h3>Scores TooGreen</h3>
+            <div id="scoresList"></div>
+          </div>
+          <div class="resume-card">
+            <h3>Profil du portefeuille</h3>
+            <ul class="profile-list" id="profileList"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: RÉPARTITION -->
+      <div class="tab-panel" id="tab-repartition">
+        <div class="repartition-layout">
+          <div class="chart-container">
+            <canvas id="pieChart" width="320" height="320"></canvas>
+          </div>
+          <div class="pie-legend" id="pieLegend"></div>
+        </div>
+        <div class="funds-table-wrap">
+          <h3>Ce dans quoi on investit</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);font-style:italic;margin-bottom:16px;">Des fonds qui regroupent des centaines d'entreprises responsables — le moteur sous le capot.</p>
+          <table class="funds-table" id="fundsTable">
+            <thead>
+              <tr>
+                <th>Fonds</th>
+                <th>Thème</th>
+                <th>Zone</th>
+                <th>Part</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: SIMULATION -->
+      <div class="tab-panel" id="tab-simulation">
+        <div class="sim-wrap">
+          <div class="sim-amount-btns" id="amountBtns">
+            <button class="amount-btn active" data-amount="1000">1 000 €</button>
+            <button class="amount-btn" data-amount="10000">10 000 €</button>
+            <button class="amount-btn" data-amount="50000">50 000 €</button>
+          </div>
+          <div class="sim-legend">
+            <div class="sim-legend-item"><div class="sim-legend-line" style="background:#94a3b8"></div> Scénario prudent</div>
+            <div class="sim-legend-item"><div class="sim-legend-line" style="background:#1A6B3A"></div> Scénario normal</div>
+            <div class="sim-legend-item"><div class="sim-legend-line" style="background:#D4A017"></div> Scénario favorable</div>
+          </div>
+          <div class="sim-chart-wrap">
+            <canvas id="lineChart"></canvas>
+          </div>
+          <div class="legal-notice">Les projections ne sont pas garanties. Investir comporte un risque de perte en capital.</div>
+          <table class="sim-table" id="simTable">
+            <thead>
+              <tr>
+                <th>Montant</th>
+                <th>Aujourd'hui</th>
+                <th>Dans 5 ans</th>
+                <th>Dans 10 ans</th>
+                <th>Dans 20 ans</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: IMPACT -->
+      <div class="tab-panel" id="tab-impact">
+        <div class="impact-tab-grid" id="impactGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== FOOTER ======================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TooGreen" class="footer-logo" />
+        <span>TooGreen</span>
+        <p>Open source • Hébergé en France 🇫🇷</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Plateforme</h4>
+          <a href="fonctionnalites.html">Fonctionnalités</a>
+          <a href="portefeuilles.html">Portefeuilles</a>
+          <a href="impact.html">Impact</a>
+          <a href="assistant.html">Assistant IA</a>
+          <a href="equipe.html">Équipe</a>
+        </div>
+        <div class="footer-col">
+          <h4>Légal</h4>
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">CGU</a>
+        </div>
+        <div class="footer-col">
+          <h4>Open Source</h4>
+          <a href="#">GitHub</a>
+          <a href="#">Contribuer</a>
+          <a href="#">Licence MIT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 TooGreen — Fait avec 💚 en France par <a href="equipe.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Jean-Paul Vu &amp; Gabriel Xiang</a> — Licence MIT</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+  /* ================================================
+     PORTFOLIO DATA
+  ================================================ */
+  const PIE_COLORS = ['#1A6B3A','#2D8C52','#4CAF7A','#A8E6C3','#D4EDDA','#0D3D25'];
+  const PIE_COLORS_FUTURE = ['#1565C0','#1976D2','#42A5F5','#90CAF9','#BBDEFB','#0D47A1'];
+  const PIE_COLORS_GROWTH = ['#B8860B','#D4A017','#F0C040','#F5D060','#1A6B3A','#4CAF7A'];
+
+  const PORTFOLIOS = [
+    {
+      id: 'safe',
+      icon: '🌱',
+      name: 'TooGreen Safe',
+      tagline: 'Votre argent croît doucement, sans mauvaises surprises.',
+      taglineShort: 'Sécurité avant tout',
+      theme: 'safe',
+      risk: 3,
+      horizon: '5 à 15 ans',
+      returnRate: '4.5 %',
+      score: 88,
+      riskClass: 'risk-low',
+      rates: { prudent: 0.03, normal: 0.045, favorable: 0.06 },
+      rateLabels: ['3 %', '4.5 %', '6 %'],
+      pieColors: PIE_COLORS,
+      allocation: [
+        { label: 'Obligations vertes', pct: 45 },
+        { label: 'Actions mondiales stables', pct: 25 },
+        { label: 'Obligations d\'entreprises', pct: 15 },
+        { label: 'Infrastructures vertes', pct: 10 },
+        { label: 'Réserve de trésorerie', pct: 5 },
+      ],
+      funds: [
+        { name: 'iShares Global Green Bond ETF', desc: 'Obligations vertes mondiales', theme: 'Obligations vertes', zone: 'Mondial', pct: 30 },
+        { name: 'Xtrackers MSCI World Min Vol ESG', desc: 'Actions à faible volatilité', theme: 'Actions stables', zone: 'Mondial', pct: 25 },
+        { name: 'iShares EUR Corporate Bond ESG', desc: 'Obligations d\'entreprises responsables', theme: 'Obligations d\'entrep.', zone: 'Europe', pct: 15 },
+        { name: 'Amundi MSCI Infrastructure ESG', desc: 'Infrastructures durables', theme: 'Infrastructures', zone: 'Mondial', pct: 10 },
+        { name: 'Réserve de trésorerie', desc: 'Liquidités en euros', theme: 'Trésorerie', zone: 'EUR', pct: 5 },
+      ],
+      scores: { global:88, solidite:88, diversification:84, esg:91, impact:82, stabilite:93 },
+      profile: [
+        'Idéal si vous n\'aimez pas prendre de risques',
+        'Horizon d\'investissement de 5 à 15 ans',
+        'Rendement estimé à 4.5 % par an (scénario normal)',
+        '85 % des actifs financent des projets durables reconnus par l\'Europe',
+        'Émissions de CO₂ réduites de 48 % vs un portefeuille classique',
+      ],
+      carbon: 48,
+      greenPct: 85,
+      causes: ['Énergie propre', 'Infrastructures durables', 'Action climatique'],
+    },
+    {
+      id: 'balanced',
+      icon: '🌱',
+      name: 'TooGreen Balanced',
+      tagline: 'Un bon équilibre entre croissance et sécurité.',
+      taglineShort: 'Le juste équilibre',
+      theme: 'balanced',
+      risk: 5,
+      horizon: '8 à 15 ans',
+      returnRate: '6.5 %',
+      score: 87,
+      riskClass: 'risk-mid',
+      rates: { prudent: 0.05, normal: 0.065, favorable: 0.08 },
+      rateLabels: ['5 %', '6.5 %', '8 %'],
+      pieColors: PIE_COLORS,
+      allocation: [
+        { label: 'Actions mondiales responsables', pct: 40 },
+        { label: 'Obligations vertes', pct: 25 },
+        { label: 'Énergies propres', pct: 15 },
+        { label: 'Tech durable', pct: 12 },
+        { label: 'Immobilier vert', pct: 5 },
+        { label: 'Réserve', pct: 3 },
+      ],
+      funds: [
+        { name: 'iShares MSCI World ESG Enhanced', desc: 'Actions mondiales responsables', theme: 'Actions mondiales', zone: 'Mondial', pct: 40 },
+        { name: 'Lyxor Green Bond ETF', desc: 'Obligations vertes mondiales', theme: 'Obligations vertes', zone: 'Mondial', pct: 25 },
+        { name: 'iShares Global Clean Energy', desc: 'Énergie renouvelable mondiale', theme: 'Énergie propre', zone: 'Mondial', pct: 15 },
+        { name: 'Xtrackers MSCI World ESG Tech', desc: 'Technologie durable', theme: 'Tech durable', zone: 'Mondial', pct: 12 },
+        { name: 'Amundi FTSE EPRA NAREIT Green', desc: 'Immobilier vert européen', theme: 'Immobilier vert', zone: 'Europe', pct: 5 },
+        { name: 'Réserve de trésorerie', desc: 'Liquidités en euros', theme: 'Trésorerie', zone: 'EUR', pct: 3 },
+      ],
+      scores: { global:87, solidite:85, diversification:90, esg:88, impact:86, stabilite:87 },
+      profile: [
+        'Pour ceux qui veulent progresser sans trop s\'exposer',
+        'Horizon d\'investissement de 8 à 15 ans',
+        'Rendement estimé à 6.5 % par an (scénario normal)',
+        '78 % des actifs financent des projets durables reconnus par l\'Europe',
+        'Émissions de CO₂ réduites de 60 % vs un portefeuille classique',
+      ],
+      carbon: 60,
+      greenPct: 78,
+      causes: ['Énergie propre', 'Villes durables', 'Innovation', 'Action climatique'],
+    },
+    {
+      id: 'growth',
+      icon: '🌱',
+      name: 'TooGreen Growth',
+      tagline: 'Pour les investisseurs qui visent haut et acceptent les hauts et les bas.',
+      taglineShort: 'Croissance maximale',
+      theme: 'growth',
+      risk: 8,
+      horizon: '10 à 20 ans',
+      returnRate: '9.5 %',
+      score: 83,
+      riskClass: 'risk-high',
+      rates: { prudent: 0.07, normal: 0.095, favorable: 0.12 },
+      rateLabels: ['7 %', '9.5 %', '12 %'],
+      pieColors: PIE_COLORS_GROWTH,
+      allocation: [
+        { label: 'Actions ESG à forte croissance', pct: 45 },
+        { label: 'Énergies renouvelables', pct: 25 },
+        { label: 'Tech verte et mobilité propre', pct: 20 },
+        { label: 'Marchés émergents responsables', pct: 7 },
+        { label: 'Réserve', pct: 3 },
+      ],
+      funds: [
+        { name: 'Invesco MSCI World ESG Universal', desc: 'Actions mondiales à forte croissance', theme: 'Actions croissance', zone: 'Mondial', pct: 45 },
+        { name: 'First Trust NASDAQ Clean Edge', desc: 'Énergie propre USA et monde', theme: 'Énergie propre', zone: 'USA/Monde', pct: 15 },
+        { name: 'L&G Clean Water ETF', desc: 'Eau et environnement', theme: 'Eau & env.', zone: 'Mondial', pct: 10 },
+        { name: 'iShares Electric Vehicles ETF', desc: 'Mobilité électrique mondiale', theme: 'Mobilité électrique', zone: 'Mondial', pct: 10 },
+        { name: 'iShares MSCI EM ESG Enhanced', desc: 'Marchés émergents responsables', theme: 'Marchés émergents', zone: 'Émergents', pct: 7 },
+        { name: 'Réserve de trésorerie', desc: 'Liquidités en euros', theme: 'Trésorerie', zone: 'EUR', pct: 3 },
+      ],
+      scores: { global:83, solidite:80, diversification:82, esg:87, impact:89, stabilite:75 },
+      profile: [
+        'Sur le long terme, le potentiel de croissance est important',
+        'Horizon d\'investissement de 10 à 20 ans',
+        'Rendement estimé à 9.5 % par an (scénario normal)',
+        '72 % des actifs financent des projets durables reconnus par l\'Europe',
+        'Émissions de CO₂ réduites de 71 % vs un portefeuille classique',
+      ],
+      carbon: 71,
+      greenPct: 72,
+      causes: ['Eau propre', 'Énergie propre', 'Mobilité durable', 'Action climatique'],
+    },
+    {
+      id: 'impact',
+      icon: '🌱',
+      name: 'TooGreen Impact',
+      tagline: 'Chaque euro investi finance un projet concret pour la planète.',
+      taglineShort: 'Investir vraiment utile',
+      theme: 'impact',
+      risk: 6,
+      horizon: '10 à 20 ans',
+      returnRate: '8 %',
+      score: 89,
+      riskClass: 'risk-mid',
+      rates: { prudent: 0.06, normal: 0.08, favorable: 0.10 },
+      rateLabels: ['6 %', '8 %', '10 %'],
+      pieColors: PIE_COLORS,
+      allocation: [
+        { label: 'Obligations vertes et à impact', pct: 35 },
+        { label: 'Actions bas-carbone', pct: 30 },
+        { label: 'Énergies renouvelables', pct: 20 },
+        { label: 'Agriculture durable et eau', pct: 10 },
+        { label: 'Réserve', pct: 5 },
+      ],
+      funds: [
+        { name: 'Amundi Green Bond ETF', desc: 'Obligations vertes mondiales', theme: 'Obligations vertes', zone: 'Mondial', pct: 35 },
+        { name: 'BNP Easy Low Carbon 100 Europe', desc: 'Actions bas-carbone européennes', theme: 'Actions bas-carbone', zone: 'Europe', pct: 30 },
+        { name: 'Invesco Solar Energy ETF', desc: 'Énergie solaire mondiale', theme: 'Énergie solaire', zone: 'Mondial', pct: 12 },
+        { name: 'Xtrackers Future Mobility ETF', desc: 'Mobilité propre mondiale', theme: 'Mobilité propre', zone: 'Mondial', pct: 8 },
+        { name: 'iShares MSCI Agriculture ESG', desc: 'Agriculture et eau responsables', theme: 'Agriculture & eau', zone: 'Mondial', pct: 10 },
+        { name: 'Réserve de trésorerie', desc: 'Liquidités en euros', theme: 'Trésorerie', zone: 'EUR', pct: 5 },
+      ],
+      scores: { global:89, solidite:82, diversification:85, esg:96, impact:97, stabilite:84 },
+      profile: [
+        'L\'impact est mesuré, réel et documenté pour chaque fonds',
+        'Horizon d\'investissement de 10 à 20 ans',
+        'Rendement estimé à 8 % par an (scénario normal)',
+        '94 % des actifs financent des projets durables reconnus par l\'Europe',
+        'Émissions de CO₂ réduites de 82 % vs un portefeuille classique',
+      ],
+      carbon: 82,
+      greenPct: 94,
+      causes: ['Alimentation', 'Eau', 'Énergie', 'Forêts', 'Action climatique'],
+    },
+    {
+      id: 'future',
+      icon: '⚡',
+      name: 'TooGreen Future',
+      tagline: 'Un pari sur les grandes révolutions à venir : hydrogène, IA verte, économie circulaire.',
+      taglineShort: 'Le monde de demain',
+      theme: 'future',
+      risk: 9,
+      horizon: '15 à 20 ans',
+      returnRate: '11.5 %',
+      score: 78,
+      riskClass: 'risk-high',
+      rates: { prudent: 0.08, normal: 0.115, favorable: 0.15 },
+      rateLabels: ['8 %', '11.5 %', '15 %'],
+      pieColors: PIE_COLORS_FUTURE,
+      allocation: [
+        { label: 'IA et tech verte', pct: 30 },
+        { label: 'Hydrogène vert et stockage', pct: 25 },
+        { label: 'Économie circulaire', pct: 20 },
+        { label: 'Biotechs durables', pct: 15 },
+        { label: 'Spatial et deep tech', pct: 7 },
+        { label: 'Réserve', pct: 3 },
+      ],
+      funds: [
+        { name: 'iShares Automation & Robotics ETF', desc: 'IA et automatisation mondiale', theme: 'IA & automatisation', zone: 'Mondial', pct: 30 },
+        { name: 'VanEck Hydrogen Economy ETF', desc: 'Hydrogène vert mondial', theme: 'Hydrogène vert', zone: 'Mondial', pct: 25 },
+        { name: 'iShares Circular Economy ETF', desc: 'Économie circulaire mondiale', theme: 'Éco. circulaire', zone: 'Mondial', pct: 20 },
+        { name: 'iShares Genomics Healthcare ESG ETF', desc: 'Biotechs et génomique durables', theme: 'Biotechs durables', zone: 'Mondial', pct: 15 },
+        { name: 'ARK Space Exploration ESG Filter', desc: 'Spatial et deep tech USA', theme: 'Spatial & deep tech', zone: 'USA', pct: 7 },
+        { name: 'Réserve de trésorerie', desc: 'Liquidités en euros', theme: 'Trésorerie', zone: 'EUR', pct: 3 },
+      ],
+      scores: { global:78, solidite:72, diversification:78, esg:85, impact:88, stabilite:68 },
+      profile: [
+        'Très ambitieux, conçu pour un horizon très long terme',
+        'Horizon d\'investissement de 15 à 20 ans',
+        'Rendement estimé à 11.5 % par an (scénario normal)',
+        '68 % des actifs financent des projets durables reconnus par l\'Europe',
+        'Émissions de CO₂ réduites de 85 % vs un portefeuille classique',
+      ],
+      carbon: 85,
+      greenPct: 68,
+      causes: ['Santé', 'Énergie propre', 'Innovation', 'Consommation responsable', 'Climat'],
+    },
+  ];
+
+  const SCORE_LABELS = {
+    global: 'Score global', solidite: 'Solidité financière',
+    diversification: 'Diversification', esg: 'Engagement ESG',
+    impact: 'Impact concret', stabilite: 'Stabilité long terme',
+  };
+
+  const AMOUNTS = [1000, 10000, 50000];
+
+  /* ================================================
+     STATE
+  ================================================ */
+  let currentPf = null;
+  let currentAmount = 1000;
+  let pieChartInst = null;
+  let lineChartInst = null;
+
+  /* ================================================
+     HELPERS
+  ================================================ */
+  function fmt(n) {
+    return new Intl.NumberFormat('fr-FR', { style:'currency', currency:'EUR', maximumFractionDigits:0 }).format(n);
+  }
+  function compound(principal, rate, years) {
+    return Math.round(principal * Math.pow(1 + rate, years));
+  }
+
+  /* ================================================
+     BUILD HOME CARDS
+  ================================================ */
+  function buildCards() {
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '';
+    PORTFOLIOS.forEach(pf => {
+      const dots = Array.from({length:10}, (_,i) => {
+        const cls = i < pf.risk ? `risk-dot active ${pf.theme}` : 'risk-dot';
+        return `<span class="${cls}"></span>`;
+      }).join('');
+
+      const card = document.createElement('div');
+      card.className = `pf-card theme-${pf.theme}`;
+      card.innerHTML = `
+        <div class="pf-card-icon">${pf.icon}</div>
+        <div class="pf-card-name">${pf.name}</div>
+        <div class="pf-card-tagline">${pf.taglineShort}</div>
+        <div class="pf-card-badges">
+          <span class="badge ${pf.riskClass}">Risque ${pf.risk}/10</span>
+          <span class="badge">${pf.horizon}</span>
+        </div>
+        <div class="pf-risk-row">
+          <span class="pf-risk-label">Risque</span>
+          <div class="risk-dots">${dots}</div>
+        </div>
+        <div class="pf-score-row">
+          <div>
+            <div class="pf-score-num">${pf.score}<span style="font-size:0.9rem;font-weight:400;color:var(--text-muted)">/100</span></div>
+            <div class="pf-score-label">Score TooGreen</div>
+          </div>
+          <div class="pf-return">
+            <div class="pf-return-num">${pf.returnRate}</div>
+            <div class="pf-return-label">Rendement estimé</div>
+          </div>
+        </div>
+      `;
+      card.addEventListener('click', () => openDetail(pf.id));
+      grid.appendChild(card);
+    });
+  }
+
+  /* ================================================
+     OPEN DETAIL
+  ================================================ */
+  function openDetail(id) {
+    currentPf = PORTFOLIOS.find(p => p.id === id);
+    document.getElementById('homeView').style.display = 'none';
+    document.getElementById('detailView').style.display = 'block';
+    window.scrollTo({top:80, behavior:'smooth'});
+    renderDetail();
+  }
+
+  function buildSelector() {
+    const sel = document.getElementById('pfSelector');
+    sel.innerHTML = '';
+    PORTFOLIOS.forEach(pf => {
+      const btn = document.createElement('button');
+      btn.className = 'pf-selector-btn' + (pf.id === currentPf.id ? ' active' : '');
+      btn.textContent = pf.icon + ' ' + pf.name.replace('TooGreen ','');
+      btn.addEventListener('click', () => openDetail(pf.id));
+      sel.appendChild(btn);
+    });
+  }
+
+  function renderDetail() {
+    const pf = currentPf;
+    buildSelector();
+
+    // Header
+    const header = document.getElementById('detailHeader');
+    header.className = `detail-header glass-card theme-${pf.theme}`;
+    document.getElementById('dhTitle').textContent = pf.icon + ' ' + pf.name;
+    document.getElementById('dhTagline').textContent = pf.tagline;
+    document.getElementById('dhRisk').textContent = pf.risk + '/10';
+    document.getElementById('dhHorizon').textContent = pf.horizon;
+    document.getElementById('dhReturn').textContent = pf.returnRate + '/an';
+    document.getElementById('dhScore').textContent = pf.score + '/100';
+
+    // Reset tabs
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector('[data-tab="resume"]').classList.add('active');
+    document.getElementById('tab-resume').classList.add('active');
+
+    renderResume();
+    renderRepartition();
+    renderImpact();
+    currentAmount = 1000;
+    document.querySelectorAll('.amount-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.amount) === currentAmount);
+    });
+    renderSimulation();
+  }
+
+  /* ── RÉSUMÉ ── */
+  function renderResume() {
+    const pf = currentPf;
+    const list = document.getElementById('scoresList');
+    list.innerHTML = Object.entries(pf.scores).map(([k, v]) => `
+      <div class="score-row">
+        <div class="score-row-top">
+          <span class="score-name">${SCORE_LABELS[k]}</span>
+          <span class="score-val">${v}/100</span>
+        </div>
+        <div class="score-bar-bg">
+          <div class="score-bar-fill" style="width:${v}%"></div>
+        </div>
+      </div>
+    `).join('');
+
+    const profile = document.getElementById('profileList');
+    profile.innerHTML = pf.profile.map(item => `
+      <li><span class="check">✓</span> ${item}</li>
+    `).join('');
+  }
+
+  /* ── RÉPARTITION ── */
+  function renderRepartition() {
+    const pf = currentPf;
+    // Legend
+    document.getElementById('pieLegend').innerHTML = pf.allocation.map((a,i) => `
+      <div class="pie-legend-item">
+        <div class="legend-dot" style="background:${pf.pieColors[i]}"></div>
+        <span>${a.label}</span>
+        <span class="legend-pct">${a.pct} %</span>
+      </div>
+    `).join('');
+
+    // Pie chart
+    if (pieChartInst) { pieChartInst.destroy(); pieChartInst = null; }
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    pieChartInst = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: pf.allocation.map(a => a.label),
+        datasets: [{
+          data: pf.allocation.map(a => a.pct),
+          backgroundColor: pf.pieColors,
+          borderWidth: 3,
+          borderColor: 'rgba(255,255,255,0.9)',
+          hoverOffset: 8,
+        }]
+      },
+      options: {
+        responsive: true,
+        cutout: '58%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.label} : ${ctx.parsed} %`
+            }
+          }
+        }
+      }
+    });
+
+    // Funds table
+    const tbody = document.querySelector('#fundsTable tbody');
+    tbody.innerHTML = pf.funds.map(f => `
+      <tr>
+        <td class="fund-name-cell">
+          <strong>${f.name}</strong>
+          <em>${f.desc}</em>
+        </td>
+        <td>${f.theme}</td>
+        <td>${f.zone}</td>
+        <td>${f.pct} %</td>
+      </tr>
+    `).join('');
+  }
+
+  /* ── SIMULATION ── */
+  function renderSimulation() {
+    const pf = currentPf;
+    const years = Array.from({length:21}, (_,i) => i);
+
+    const prudentData   = years.map(y => compound(currentAmount, pf.rates.prudent, y));
+    const normalData    = years.map(y => compound(currentAmount, pf.rates.normal, y));
+    const favorableData = years.map(y => compound(currentAmount, pf.rates.favorable, y));
+
+    if (lineChartInst) { lineChartInst.destroy(); lineChartInst = null; }
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    lineChartInst = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: years.map(y => y === 0 ? "Aujourd'hui" : `Année ${y}`),
+        datasets: [
+          {
+            label: `Prudent (${pf.rateLabels[0]}/an)`,
+            data: prudentData,
+            borderColor: '#94a3b8',
+            backgroundColor: 'rgba(148,163,184,0.08)',
+            borderWidth: 2.5,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            tension: 0.4,
+            fill: false,
+          },
+          {
+            label: `Normal (${pf.rateLabels[1]}/an)`,
+            data: normalData,
+            borderColor: '#1A6B3A',
+            backgroundColor: 'rgba(26,107,58,0.08)',
+            borderWidth: 3,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            tension: 0.4,
+            fill: false,
+          },
+          {
+            label: `Favorable (${pf.rateLabels[2]}/an)`,
+            data: favorableData,
+            borderColor: '#D4A017',
+            backgroundColor: 'rgba(212,160,23,0.08)',
+            borderWidth: 2.5,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            tension: 0.4,
+            fill: false,
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.dataset.label} : ${fmt(ctx.parsed.y)}`
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: 'rgba(13,61,37,0.06)' },
+            ticks: {
+              color: '#6B9E7A',
+              maxTicksLimit: 11,
+              font: { size: 11 }
+            }
+          },
+          y: {
+            grid: { color: 'rgba(13,61,37,0.06)' },
+            ticks: {
+              color: '#6B9E7A',
+              font: { size: 11 },
+              callback: v => fmt(v)
+            }
+          }
+        }
+      }
+    });
+
+    // Summary table: checkpoints at 0, 5, 10, 20 years
+    const CHECKS = [0, 5, 10, 20];
+    const tbody = document.querySelector('#simTable tbody');
+    tbody.innerHTML = ['prudent','normal','favorable'].map((scenario,i) => {
+      const r = pf.rates[scenario];
+      const label = ['Scénario prudent','Scénario normal','Scénario favorable'][i];
+      const cols = ['col-prudent','col-normal','col-favorable'][i];
+      const vals = CHECKS.map(y => `<td class="${cols}">${fmt(compound(currentAmount, r, y))}</td>`).join('');
+      return `<tr><td>${label} — ${pf.rateLabels[i]}/an</td>${vals}</tr>`;
+    }).join('');
+  }
+
+  /* ── IMPACT ── */
+  function renderImpact() {
+    const pf = currentPf;
+    document.getElementById('impactGrid').innerHTML = `
+      <div class="impact-tab-card">
+        <h3>Empreinte carbone</h3>
+        <div class="impact-big-num">–${pf.carbon} %</div>
+        <div class="impact-big-label">de CO₂ émis en moins</div>
+        <div class="impact-big-sub">vs un portefeuille classique non-ESG</div>
+      </div>
+      <div class="impact-tab-card">
+        <h3>Projets verts financés</h3>
+        <div class="impact-big-num">${pf.greenPct} %</div>
+        <div class="impact-big-label">des actifs financent des projets reconnus par l'Europe comme durables</div>
+      </div>
+      <div class="impact-tab-card">
+        <h3>Causes soutenues</h3>
+        <ul class="causes-list">
+          ${pf.causes.map(c => `<li><span class="cause-dot"></span>${c}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="impact-tab-card">
+        <h3>Exclusions non négociables</h3>
+        <ul class="excl-list">
+          <li><span class="excl-icon">🚫</span> Charbon thermique</li>
+          <li><span class="excl-icon">🚫</span> Tabac</li>
+          <li><span class="excl-icon">🚫</span> Fabricants d'armes offensives</li>
+          <li><span class="excl-icon">🚫</span> Jeux d'argent</li>
+          <li><span class="excl-icon">⚠️</span> Entreprises avec scandale ESG récent</li>
+        </ul>
+      </div>
+    `;
+  }
+
+  /* ================================================
+     EVENTS
+  ================================================ */
+  document.getElementById('backBtn').addEventListener('click', () => {
+    document.getElementById('detailView').style.display = 'none';
+    document.getElementById('homeView').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'repartition') renderRepartition();
+      if (btn.dataset.tab === 'simulation')  renderSimulation();
+    });
+  });
+
+  document.getElementById('amountBtns').addEventListener('click', e => {
+    if (!e.target.classList.contains('amount-btn')) return;
+    currentAmount = parseInt(e.target.dataset.amount);
+    document.querySelectorAll('.amount-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.amount) === currentAmount);
+    });
+    renderSimulation();
+  });
+
+  /* ================================================
+     INIT
+  ================================================ */
+  buildCards();
+  </script>
+</body>
+</html>
