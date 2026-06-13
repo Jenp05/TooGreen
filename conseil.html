@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conseil Responsable — TooGreen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div>
+        <span>Too<em>Green</em></span>
+      </a>
+      <nav class="nav">
+        <a href="portefeuille.html" class="nav-link">Portefeuille Vert</a>
+        <a href="empreinte.html" class="nav-link">Empreinte Carbone</a>
+        <a href="conseil.html" class="nav-link active">Conseil Responsable</a>
+        <a href="assistant.html" class="nav-link">Assistant IA</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-ghost">Connexion</a>
+        <a href="#" class="btn btn-primary">S'inscrire</a>
+        <div class="lang-select" id="langSelect">
+          <button class="lang-btn" id="langBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLang">FR</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" data-lang="fr" class="active">🇫🇷 Français</a>
+            <a href="#" data-lang="en">🇬🇧 English</a>
+          </div>
+        </div>
+        <button class="burger" id="burger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="portefeuille.html">Portefeuille Vert</a>
+    <a href="empreinte.html">Empreinte Carbone</a>
+    <a href="conseil.html">Conseil Responsable</a>
+    <a href="assistant.html">Assistant IA</a>
+    <div class="mobile-menu-actions">
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Connexion</a>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">S'inscrire</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-eyebrow">Conseil Responsable</span>
+        <h1 class="display-lg" style="max-width:740px;margin:16px auto 20px">
+          Un expert à vos côtés.<br><span style="color:var(--green-400)">Pour chaque étape vers le vert.</span>
+        </h1>
+        <p style="color:var(--text-secondary);max-width:540px;margin:0 auto 36px;font-size:1.05rem">
+          Particuliers ou entreprises, nos conseillers certifiés vous accompagnent dans votre transition vers une consommation plus responsable.
+        </p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#plans" class="btn btn-primary btn-lg">Voir les formules</a>
+          <a href="#contact" class="btn btn-outline btn-lg">Prendre RDV gratuitement</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- POUR QUI -->
+    <section style="padding:80px 0">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto">
+
+          <div class="bento-card reveal" style="padding:40px">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:14px">Pour les <span style="color:var(--green-400)">particuliers</span></h2>
+            <ul style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Bilan carbone personnel complet
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Plan d'action sur-mesure (transport, logement, alimentation)
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Stratégie d'investissement responsable
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Suivi trimestriel de vos progrès
+              </li>
+            </ul>
+            <a href="#plans" class="btn btn-primary" style="width:100%;justify-content:center">Découvrir les offres</a>
+          </div>
+
+          <div class="bento-card reveal" style="padding:40px;border-color:var(--border-green)">
+            <div class="card-icon" style="background:var(--green-500);border-color:var(--green-500)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h2 style="font-size:1.4rem;font-weight:800;margin-bottom:14px">Pour les <span style="color:var(--green-400)">entreprises</span></h2>
+            <ul style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px">
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Bilan carbone réglementaire (BEGES, CSRD)
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Stratégie RSE & objectifs Net Zéro
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Formation des équipes à la transition écologique
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-400)" stroke-width="2.5" width="16" height="16" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+                Accompagnement à la certification ISO 14001 / B-Corp
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Obtenir un devis</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANS PARTICULIERS -->
+    <section id="plans" style="background:var(--bg-surface);padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Tarifs</span>
+          <h2 class="display-md">Choisissez votre formule</h2>
+          <p class="text-muted" style="margin-top:14px">Tous les plans incluent un premier appel découverte de 30 min offert.</p>
+        </div>
+
+        <div class="plans-grid">
+
+          <div class="plan-card reveal">
+            <div class="plan-name">Essentiel</div>
+            <div class="plan-price">49 <span>€ / séance</span></div>
+            <div class="plan-desc">Idéal pour un premier bilan ou une question ponctuelle.</div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 session de conseil (1h)</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Rapport PDF personnalisé</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>5 recommandations clés</div>
+              <div class="plan-feature" style="color:var(--text-muted)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Suivi mensuel</div>
+            </div>
+            <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Réserver une séance</a>
+          </div>
+
+          <div class="plan-card featured reveal">
+            <div class="plan-badge">Le plus populaire</div>
+            <div class="plan-name">Accompagnement</div>
+            <div class="plan-price">149 <span>€ / mois</span></div>
+            <div class="plan-desc">Pour une transformation durable sur 3 à 6 mois.</div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>2 sessions / mois (1h chacune)</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bilan carbone complet</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Plan d'action sur 6 mois</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suivi de progression mensuel</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Accès Assistant IA illimité</div>
+            </div>
+            <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center">Commencer</a>
+          </div>
+
+          <div class="plan-card reveal">
+            <div class="plan-name">Entreprise</div>
+            <div class="plan-price">Sur <span>devis</span></div>
+            <div class="plan-desc">Pour TPE, PME et grands groupes engagés dans leur RSE.</div>
+            <div class="plan-features">
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bilan carbone BEGES / CSRD</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Stratégie RSE complète</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Formation des équipes</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Rapport annuel d'impact</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Accompagnement certification</div>
+            </div>
+            <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Demander un devis</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section id="contact" style="padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Contact</span>
+          <h2 class="display-md">Prenez rendez-vous</h2>
+          <p class="text-muted" style="margin-top:14px">Premier appel découverte de 30 min offert. Réponse sous 24h.</p>
+        </div>
+
+        <div style="max-width:640px;margin:60px auto 0" class="reveal">
+          <form id="contactForm" style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div>
+                <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Prénom</label>
+                <input type="text" placeholder="Jean" class="email-input" required />
+              </div>
+              <div>
+                <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Nom</label>
+                <input type="text" placeholder="Dupont" class="email-input" required />
+              </div>
+            </div>
+            <div>
+              <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Email</label>
+              <input type="email" placeholder="jean@example.com" class="email-input" required />
+            </div>
+            <div>
+              <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Vous êtes</label>
+              <select class="email-input" style="cursor:pointer">
+                <option>Particulier</option>
+                <option>TPE / PME</option>
+                <option>Grand groupe</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Formule souhaitée</label>
+              <select class="email-input" style="cursor:pointer">
+                <option>Essentiel (49 €/séance)</option>
+                <option>Accompagnement (149 €/mois)</option>
+                <option>Entreprise (sur devis)</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:.8rem;color:var(--text-muted);display:block;margin-bottom:6px">Message (optionnel)</label>
+              <textarea class="email-input" rows="4" placeholder="Décrivez brièvement votre situation ou votre objectif..." style="resize:vertical"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center" id="contactSubmit">
+              Envoyer ma demande
+            </button>
+            <p style="font-size:.8rem;color:var(--text-muted);text-align:center">Réponse garantie sous 24h ouvrées · Aucun engagement</p>
+          </form>
+          <div id="contactSuccess" style="display:none;text-align:center;padding:48px 24px">
+            <div style="font-size:3rem;margin-bottom:20px">✅</div>
+            <h3 style="font-size:1.3rem;font-weight:700;margin-bottom:10px">Demande envoyée !</h3>
+            <p style="color:var(--text-secondary)">Notre équipe vous contactera dans les 24h pour fixer votre appel découverte gratuit.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-eyebrow">L'équipe</span><h2 class="display-md">L'équipe derrière TooGreen</h2></div>
+      <div class="team-grid">
+        <div class="team-card reveal"><div class="team-avatar">JP</div><div class="team-name">Jean-Paul Vu</div><div class="team-role">CEO & Fondateur</div><p class="team-bio">Visionnaire de la finance verte, Jean-Paul croit que chaque euro investi peut changer le monde.</p><a href="https://www.linkedin.com/in/jean-paul-vu-a958512ba/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">GX</div><div class="team-name">Gabriel Xiang</div><div class="team-role">CFO & Co-fondateur</div><p class="team-bio">Expert en finance durable, Gabriel structure les modèles d'impact pour que rentabilité et écologie convergent.</p><a href="https://www.linkedin.com/in/gabriel-xiang-/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">UH</div><div class="team-name">Umar H.</div><div class="team-role">CTO & Co-fondateur</div><p class="team-bio">Architecte de la plateforme, Umar développe les outils IA et data pour mesurer et réduire votre impact.</p><a href="https://www.linkedin.com/in/umar-h-but3/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div><span>Too<em>Green</em></span></a><p style="margin-top:14px">La plateforme de référence pour investir et vivre de façon plus verte.</p></div>
+        <div class="footer-col"><h4>Plateforme</h4><ul><li><a href="portefeuille.html">Portefeuille Vert</a></li><li><a href="empreinte.html">Empreinte Carbone</a></li><li><a href="conseil.html">Conseil Responsable</a></li><li><a href="assistant.html">Assistant IA</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li></ul></div>
+        <div class="footer-col"><h4>Suivez-nous</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">Newsletter</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 TooGreen. Tous droits réservés.</span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Contact form handler
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

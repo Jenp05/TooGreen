@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portefeuille Vert — TooGreen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER (identique) -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div>
+        <span>Too<em>Green</em></span>
+      </a>
+      <nav class="nav">
+        <a href="portefeuille.html" class="nav-link active">Portefeuille Vert</a>
+        <a href="empreinte.html" class="nav-link">Empreinte Carbone</a>
+        <a href="conseil.html" class="nav-link">Conseil Responsable</a>
+        <a href="assistant.html" class="nav-link">Assistant IA</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-ghost">Connexion</a>
+        <a href="#" class="btn btn-primary">S'inscrire</a>
+        <div class="lang-select" id="langSelect">
+          <button class="lang-btn" id="langBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLang">FR</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" data-lang="fr" class="active">🇫🇷 Français</a>
+            <a href="#" data-lang="en">🇬🇧 English</a>
+          </div>
+        </div>
+        <button class="burger" id="burger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="portefeuille.html">Portefeuille Vert</a>
+    <a href="empreinte.html">Empreinte Carbone</a>
+    <a href="conseil.html">Conseil Responsable</a>
+    <a href="assistant.html">Assistant IA</a>
+    <div class="mobile-menu-actions">
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Connexion</a>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">S'inscrire</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO PAGE -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-eyebrow">Portefeuille Vert</span>
+        <h1 class="display-lg" style="max-width:700px;margin:16px auto 20px">
+          Investissez dans la planète.<br><span style="color:var(--green-400)">Pas contre elle.</span>
+        </h1>
+        <p style="color:var(--text-secondary);max-width:520px;margin:0 auto 36px;font-size:1.05rem">
+          Découvrez une sélection d'actifs verts triés sur le volet : actions, ETF et obligations à fort impact écologique.
+        </p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+          <a href="#" class="btn btn-primary btn-lg">Créer mon portefeuille</a>
+          <a href="#score" class="btn btn-outline btn-lg">Voir mon score éco ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MINI STATS -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item reveal"><div class="stat-value"><span>47</span></div><div class="stat-label">Actifs verts sélectionnés</div></div>
+          <div class="stat-item reveal"><div class="stat-value"><span>+18</span>%</div><div class="stat-label">Performance moy. sur 12 mois</div></div>
+          <div class="stat-item reveal"><div class="stat-value"><span>82</span>/100</div><div class="stat-label">Score éco moyen du portefeuille</div></div>
+          <div class="stat-item reveal"><div class="stat-value"><span>0</span></div><div class="stat-label">Entreprises fossiles incluses</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELECTION ACTIFS -->
+    <section>
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Sélection</span>
+          <h2 class="display-md">Actifs durables de référence</h2>
+          <p class="text-muted" style="margin-top:14px">Chaque actif est analysé selon des critères ESG stricts avant d'entrer dans notre sélection.</p>
+        </div>
+
+        <!-- Filtres -->
+        <div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap" class="reveal">
+          <button class="btn btn-primary" style="padding:8px 18px;font-size:.85rem">Tous</button>
+          <button class="btn btn-ghost" style="padding:8px 18px;font-size:.85rem">Énergies renouvelables</button>
+          <button class="btn btn-ghost" style="padding:8px 18px;font-size:.85rem">Protection nature</button>
+          <button class="btn btn-ghost" style="padding:8px 18px;font-size:.85rem">ETF</button>
+          <button class="btn btn-ghost" style="padding:8px 18px;font-size:.85rem">Obligations vertes</button>
+        </div>
+
+        <div class="card reveal">
+          <table class="asset-table">
+            <thead>
+              <tr>
+                <th>Actif</th>
+                <th>Catégorie</th>
+                <th>Score Éco</th>
+                <th>Perf. 1 an</th>
+                <th>CO₂ évité</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="asset-name">iShares Global Clean Energy ETF</span><br><span style="font-size:.75rem;color:var(--text-muted)">ICLN</span></td>
+                <td><span class="asset-badge">Énergies renouvelables</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">94/100</span></td>
+                <td class="positive">+22,4 %</td>
+                <td>12,4 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+              <tr>
+                <td><span class="asset-name">Vestas Wind Systems</span><br><span style="font-size:.75rem;color:var(--text-muted)">VWS · Copenhagen</span></td>
+                <td><span class="asset-badge">Éolien</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">91/100</span></td>
+                <td class="positive">+31,7 %</td>
+                <td>18,2 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+              <tr>
+                <td><span class="asset-name">Ørsted A/S</span><br><span style="font-size:.75rem;color:var(--text-muted)">ORSTED · Copenhagen</span></td>
+                <td><span class="asset-badge">Éolien offshore</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">89/100</span></td>
+                <td class="positive">+14,1 %</td>
+                <td>15,8 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+              <tr>
+                <td><span class="asset-name">First Solar Inc.</span><br><span style="font-size:.75rem;color:var(--text-muted)">FSLR · NASDAQ</span></td>
+                <td><span class="asset-badge">Solaire</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">87/100</span></td>
+                <td class="positive">+38,2 %</td>
+                <td>20,1 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+              <tr>
+                <td><span class="asset-name">Purefoods Regenerative ETF</span><br><span style="font-size:.75rem;color:var(--text-muted)">PURE</span></td>
+                <td><span class="asset-badge">Agriculture durable</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">83/100</span></td>
+                <td class="positive">+9,8 %</td>
+                <td>8,3 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+              <tr>
+                <td><span class="asset-name">Lyxor New Energy ETF</span><br><span style="font-size:.75rem;color:var(--text-muted)">NRJ · Euronext</span></td>
+                <td><span class="asset-badge">Multi-énergies</span></td>
+                <td><span style="color:var(--green-400);font-weight:700">80/100</span></td>
+                <td class="positive">+17,3 %</td>
+                <td>10,5 t / 10 k€</td>
+                <td><a href="#" class="btn btn-outline" style="padding:6px 14px;font-size:.8rem">Investir</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCORE ECO -->
+    <section id="score" style="background:var(--bg-surface);padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Score d'impact</span>
+          <h2 class="display-md">Votre impact écologique en un chiffre</h2>
+          <p class="text-muted" style="margin-top:14px">Le score TooGreen agrège les critères ESG, le CO₂ évité et l'impact biodiversité de chaque actif.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:60px auto 0" class="reveal">
+
+          <div class="eco-gauge">
+            <h3 style="font-size:.875rem;color:var(--text-muted);margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em">Score du portefeuille exemple</h3>
+            <div class="gauge-circle">
+              <div class="gauge-value">82</div>
+            </div>
+            <p style="font-size:.9rem;color:var(--green-400);font-weight:700">Excellent</p>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:6px">Top 15 % des portefeuilles TooGreen</p>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="card">
+              <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">Critère Environnement</div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="flex:1;background:var(--bg-card-2);border-radius:4px;height:6px"><div style="width:88%;height:100%;background:var(--green-500);border-radius:4px"></div></div>
+                <span style="font-weight:700;color:var(--green-400)">88</span>
+              </div>
+            </div>
+            <div class="card">
+              <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">Critère Social</div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="flex:1;background:var(--bg-card-2);border-radius:4px;height:6px"><div style="width:74%;height:100%;background:var(--green-500);border-radius:4px"></div></div>
+                <span style="font-weight:700;color:var(--green-400)">74</span>
+              </div>
+            </div>
+            <div class="card">
+              <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">Critère Gouvernance</div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <div style="flex:1;background:var(--bg-card-2);border-radius:4px;height:6px"><div style="width:81%;height:100%;background:var(--green-500);border-radius:4px"></div></div>
+                <span style="font-weight:700;color:var(--green-400)">81</span>
+              </div>
+            </div>
+            <div class="card">
+              <div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">CO₂ évité (estimé)</div>
+              <div style="font-size:1.4rem;font-weight:800;color:var(--text-primary)">45,2 <span style="font-size:.9rem;font-weight:400;color:var(--text-secondary)">t CO₂/an</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <h2 class="display-md">Construisez votre portefeuille vert dès aujourd'hui</h2>
+          <p>Accès gratuit, sans minimum d'investissement requis pour explorer la plateforme.</p>
+          <div class="cta-btns">
+            <a href="#" class="btn btn-primary btn-lg">Créer mon portefeuille</a>
+            <a href="conseil.html" class="btn btn-outline btn-lg">Parler à un expert</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-eyebrow">L'équipe</span><h2 class="display-md">L'équipe derrière TooGreen</h2></div>
+      <div class="team-grid">
+        <div class="team-card reveal"><div class="team-avatar">JP</div><div class="team-name">Jean-Paul Vu</div><div class="team-role">CEO & Fondateur</div><p class="team-bio">Visionnaire de la finance verte, Jean-Paul croit que chaque euro investi peut changer le monde.</p><a href="https://www.linkedin.com/in/jean-paul-vu-a958512ba/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">GX</div><div class="team-name">Gabriel Xiang</div><div class="team-role">CFO & Co-fondateur</div><p class="team-bio">Expert en finance durable, Gabriel structure les modèles d'impact pour que rentabilité et écologie convergent.</p><a href="https://www.linkedin.com/in/gabriel-xiang-/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">UH</div><div class="team-name">Umar H.</div><div class="team-role">CTO & Co-fondateur</div><p class="team-bio">Architecte de la plateforme, Umar développe les outils IA et data pour mesurer et réduire votre impact.</p><a href="https://www.linkedin.com/in/umar-h-but3/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div><span>Too<em>Green</em></span></a><p style="margin-top:14px">La plateforme de référence pour investir et vivre de façon plus verte.</p></div>
+        <div class="footer-col"><h4>Plateforme</h4><ul><li><a href="portefeuille.html">Portefeuille Vert</a></li><li><a href="empreinte.html">Empreinte Carbone</a></li><li><a href="conseil.html">Conseil Responsable</a></li><li><a href="assistant.html">Assistant IA</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li></ul></div>
+        <div class="footer-col"><h4>Suivez-nous</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">Newsletter</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 TooGreen. Tous droits réservés.</span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

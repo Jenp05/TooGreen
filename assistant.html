@@ -3,113 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assistant IA — TooGreen</title>
-  <link rel="icon" href="logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <title>Assistant IA Écologie — TooGreen</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ======================== NAVBAR ======================== -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-logo">
-        <img src="logo.png" alt="TooGreen Logo" class="nav-logo-img" />
-        <span class="nav-logo-text">TooGreen</span>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div>
+        <span>Too<em>Green</em></span>
       </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
-        <li><a href="portefeuilles.html">Portefeuilles</a></li>
-        <li><a href="impact.html">Impact</a></li>
-        <li><a href="assistant.html">Assistant IA</a></li>
-        <li><a href="equipe.html">Équipe</a></li>
-        <li class="nav-mobile-cta"><button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button></li>
-      </ul>
-      <button class="nav-cta" onclick="location.href='assistant.html'">Commencer</button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ======================== AI ASSISTANT ======================== -->
-  <section class="assistant-section page-top" id="assistant">
-    <div class="section-container">
-      <div class="section-header">
-        <span class="section-eyebrow">Assistant IA</span>
-        <h2 class="section-title">Votre conseiller vert<br/>personnel</h2>
-        <p class="section-sub">Posez toutes vos questions sur l'écologie, le développement durable et les gestes verts du quotidien.</p>
-      </div>
-      <div class="chat-wrapper glass-card">
-        <div class="chat-header">
-          <div class="chat-avatar">
-            <img src="logo.png" alt="TooGreen AI" />
-          </div>
-          <div class="chat-info">
-            <strong>TooGreen Assistant</strong>
-            <span class="status-dot"></span><em>En ligne</em>
+      <nav class="nav">
+        <a href="portefeuille.html" class="nav-link">Portefeuille Vert</a>
+        <a href="empreinte.html" class="nav-link">Empreinte Carbone</a>
+        <a href="conseil.html" class="nav-link">Conseil Responsable</a>
+        <a href="assistant.html" class="nav-link active">Assistant IA</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-ghost">Connexion</a>
+        <a href="#" class="btn btn-primary">S'inscrire</a>
+        <div class="lang-select" id="langSelect">
+          <button class="lang-btn" id="langBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLang">FR</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" data-lang="fr" class="active">🇫🇷 Français</a>
+            <a href="#" data-lang="en">🇬🇧 English</a>
           </div>
         </div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="message bot-message">
-            <div class="message-avatar"><img src="logo.png" alt="" /></div>
-            <div class="message-bubble">
-              👋 Bonjour ! Je suis votre assistant TooGreen. Posez-moi vos questions sur l'écologie, le tri des déchets, la mobilité verte, ou l'alimentation durable. Je suis là pour vous aider à vivre plus vert ! 🌿
+        <button class="burger" id="burger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="portefeuille.html">Portefeuille Vert</a>
+    <a href="empreinte.html">Empreinte Carbone</a>
+    <a href="conseil.html">Conseil Responsable</a>
+    <a href="assistant.html">Assistant IA</a>
+    <div class="mobile-menu-actions">
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Connexion</a>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">S'inscrire</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-badge" style="margin-bottom:20px">
+          <span class="hero-badge-dot">IA</span>
+          <span>1 essai gratuit · Sans inscription</span>
+        </div>
+        <h1 class="display-lg" style="max-width:680px;margin:0 auto 20px">
+          Votre expert écologie<br><span style="color:var(--green-400)">disponible 24h/24.</span>
+        </h1>
+        <p style="color:var(--text-secondary);max-width:500px;margin:0 auto 20px;font-size:1.05rem">
+          Posez toutes vos questions sur l'écologie, l'investissement vert et la réduction de votre empreinte carbone. Notre IA répond instantanément.
+        </p>
+        <div style="display:flex;gap:20px;justify-content:center;font-size:.875rem;color:var(--text-muted)">
+          <span>✓ 1er essai gratuit</span>
+          <span>✓ Réponses sourcées</span>
+          <span>✓ Spécialisé écologie</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAT SECTION -->
+    <section style="padding:20px 0 80px">
+      <div class="container">
+
+        <!-- Questions suggérées -->
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px" class="reveal">
+          <button class="btn btn-ghost" style="font-size:.8rem;padding:7px 14px" onclick="fillChat(this)">Comment réduire mon empreinte carbone ?</button>
+          <button class="btn btn-ghost" style="font-size:.8rem;padding:7px 14px" onclick="fillChat(this)">Quels ETF verts choisir en 2026 ?</button>
+          <button class="btn btn-ghost" style="font-size:.8rem;padding:7px 14px" onclick="fillChat(this)">Qu'est-ce que le score ESG ?</button>
+          <button class="btn btn-ghost" style="font-size:.8rem;padding:7px 14px" onclick="fillChat(this)">Comment compenser mes émissions ?</button>
+        </div>
+
+        <!-- Chat window -->
+        <div class="chat-window reveal">
+          <div class="chat-header">
+            <div class="chat-avatar">🌿</div>
+            <div>
+              <div class="chat-name">EcoBot — Assistant TooGreen</div>
+              <div class="chat-status">● En ligne · Spécialisé écologie & finance verte</div>
+            </div>
+            <div style="margin-left:auto">
+              <span style="background:var(--green-glow);border:1px solid var(--border-green);border-radius:100px;padding:4px 12px;font-size:.75rem;color:var(--green-400);font-weight:600">GRATUIT</span>
             </div>
           </div>
+
+          <div class="chat-messages" id="chatMessages">
+            <!-- Message d'accueil bot -->
+            <div class="msg">
+              <div class="msg-av">🌿</div>
+              <div class="msg-text">
+                Bonjour ! Je suis EcoBot, l'assistant IA de TooGreen, spécialisé en écologie et investissement responsable. Posez-moi n'importe quelle question — je suis là pour vous aider à agir concrètement pour la planète.<br><br>
+                <strong style="color:var(--green-400)">Votre premier échange est entièrement gratuit.</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Posez votre question sur l'écologie…" autocomplete="off" />
+            <button class="btn btn-primary" id="chatSend" style="padding:10px 18px;flex-shrink:0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="chat-suggestions">
-          <button class="suggestion-chip" onclick="sendSuggestion(this)">Comment réduire mon empreinte carbone ?</button>
-          <button class="suggestion-chip" onclick="sendSuggestion(this)">Que mettre dans le bac jaune ?</button>
-          <button class="suggestion-chip" onclick="sendSuggestion(this)">Alternatives à la voiture en ville ?</button>
+
+        <!-- Email gate (shown after first free message) -->
+        <div class="email-gate reveal" id="emailGate" style="display:none;max-width:480px;margin:32px auto 0">
+          <div style="font-size:2rem;margin-bottom:16px">🔒</div>
+          <h3>Continuez la conversation gratuitement</h3>
+          <p>Créez votre compte TooGreen en 10 secondes pour accéder à l'assistant IA sans limite et recevoir nos conseils écologiques chaque semaine.</p>
+          <form class="email-form" id="gateForm">
+            <input type="email" class="email-input" placeholder="votre@email.com" required />
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">
+              Continuer gratuitement →
+            </button>
+            <p style="font-size:.75rem;color:var(--text-muted);text-align:center">Aucune carte bancaire · Désinscription en 1 clic</p>
+          </form>
         </div>
-        <div class="chat-input-area">
-          <input type="text" id="chatInput" placeholder="Posez votre question eco-friendly..." class="chat-input" />
-          <button class="chat-send" id="sendBtn" onclick="sendMessage()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-          </button>
+
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section style="background:var(--bg-surface);padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Fonctionnalités</span>
+          <h2 class="display-md">Ce qu'EcoBot peut faire pour vous</h2>
         </div>
+        <div class="bento-grid" style="margin-top:60px">
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <h3>Répondre à vos questions</h3>
+            <p>Bilan carbone, investissement ESG, énergies renouvelables, labels écologiques... EcoBot connaît son sujet sur le bout des feuilles.</p>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <h3>Analyser vos investissements</h3>
+            <p>Donnez-lui un nom d'action ou d'ETF et il vous explique son score ESG, ses controverses éventuelles et son alignement avec vos valeurs.</p>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <h3>Rédiger vos rapports</h3>
+            <p>Besoin d'un résumé de votre bilan carbone ou d'un email RSE pour votre direction ? EcoBot rédige pour vous en quelques secondes.</p>
+          </div>
+
+          <div class="bento-card span-2 reveal" style="background:linear-gradient(135deg,var(--bg-card) 0%,rgba(22,163,74,0.1) 100%);border-color:var(--border-green)">
+            <div class="card-icon" style="background:var(--green-500);border-color:var(--green-500)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Protéger vos données</h3>
+            <p>Vos conversations avec EcoBot ne sont jamais utilisées pour entraîner des modèles tiers. Hébergement européen, conformité RGPD totale. Vos données vous appartiennent.</p>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <h3>Vous orienter vers un expert</h3>
+            <p>Si votre question dépasse l'IA, EcoBot vous redirige automatiquement vers un conseiller humain TooGreen disponible.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING IA -->
+    <section style="padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Accès</span>
+          <h2 class="display-md">Débloquez l'accès illimité</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:720px;margin:60px auto 0">
+
+          <div class="plan-card reveal" style="text-align:center">
+            <div class="plan-name">Gratuit</div>
+            <div class="plan-price" style="font-size:2rem">0 <span>€</span></div>
+            <div class="plan-desc">Pour découvrir EcoBot</div>
+            <div class="plan-features" style="text-align:left">
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 message d'essai gratuit</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Inscription par email</div>
+              <div class="plan-feature" style="color:var(--text-muted)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Conversations illimitées</div>
+              <div class="plan-feature" style="color:var(--text-muted)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Historique des échanges</div>
+            </div>
+            <a href="#" class="btn btn-outline" style="width:100%;justify-content:center">Essayer maintenant</a>
+          </div>
+
+          <div class="plan-card featured reveal" style="text-align:center">
+            <div class="plan-badge">Recommandé</div>
+            <div class="plan-name">Premium</div>
+            <div class="plan-price" style="font-size:2rem">9 <span>€ / mois</span></div>
+            <div class="plan-desc">Accès total à l'écosystème TooGreen</div>
+            <div class="plan-features" style="text-align:left">
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Conversations illimitées</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Historique & export PDF</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Analyse d'actifs avancée</div>
+              <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Portefeuille vert complet</div>
+            </div>
+            <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">Commencer gratuitement</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-eyebrow">L'équipe</span><h2 class="display-md">L'équipe derrière TooGreen</h2></div>
+      <div class="team-grid">
+        <div class="team-card reveal"><div class="team-avatar">JP</div><div class="team-name">Jean-Paul Vu</div><div class="team-role">CEO & Fondateur</div><p class="team-bio">Visionnaire de la finance verte, Jean-Paul croit que chaque euro investi peut changer le monde.</p><a href="https://www.linkedin.com/in/jean-paul-vu-a958512ba/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">GX</div><div class="team-name">Gabriel Xiang</div><div class="team-role">CFO & Co-fondateur</div><p class="team-bio">Expert en finance durable, Gabriel structure les modèles d'impact pour que rentabilité et écologie convergent.</p><a href="https://www.linkedin.com/in/gabriel-xiang-/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">UH</div><div class="team-name">Umar H.</div><div class="team-role">CTO & Co-fondateur</div><p class="team-bio">Architecte de la plateforme, Umar développe les outils IA et data pour mesurer et réduire votre impact.</p><a href="https://www.linkedin.com/in/umar-h-but3/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
       </div>
     </div>
   </section>
 
-  <!-- ======================== FOOTER ======================== -->
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <img src="logo.png" alt="TooGreen" class="footer-logo" />
-        <span>TooGreen</span>
-        <p>Open source • Hébergé en France 🇫🇷</p>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div><span>Too<em>Green</em></span></a><p style="margin-top:14px">La plateforme de référence pour investir et vivre de façon plus verte.</p></div>
+        <div class="footer-col"><h4>Plateforme</h4><ul><li><a href="portefeuille.html">Portefeuille Vert</a></li><li><a href="empreinte.html">Empreinte Carbone</a></li><li><a href="conseil.html">Conseil Responsable</a></li><li><a href="assistant.html">Assistant IA</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li></ul></div>
+        <div class="footer-col"><h4>Suivez-nous</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">Newsletter</a></li></ul></div>
       </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>Plateforme</h4>
-          <a href="fonctionnalites.html">Fonctionnalités</a>
-          <a href="impact.html">Impact</a>
-          <a href="assistant.html">Assistant IA</a>
-          <a href="equipe.html">Équipe</a>
-        </div>
-        <div class="footer-col">
-          <h4>Légal</h4>
-          <a href="#">Politique de confidentialité</a>
-          <a href="#">Mentions légales</a>
-          <a href="#">CGU</a>
-        </div>
-        <div class="footer-col">
-          <h4>Open Source</h4>
-          <a href="#">GitHub</a>
-          <a href="#">Contribuer</a>
-          <a href="#">Licence MIT</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 TooGreen — Fait avec 💚 en France par <a href="equipe.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Jean-Paul Vu &amp; Gabriel Xiang</a> — Licence MIT</p>
+      <div class="footer-bottom"><span>© 2026 TooGreen. Tous droits réservés.</span></div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Fill chat input from suggested questions
+    function fillChat(btn) {
+      const input = document.getElementById('chatInput');
+      if (input) { input.value = btn.textContent; input.focus(); }
+    }
+
+    // Show email gate with slide-in animation
+    const gate = document.getElementById('emailGate');
+    if (gate) {
+      gate.style.transition = 'opacity 400ms, transform 400ms';
+      gate.style.opacity = '0';
+      gate.style.transform = 'translateY(16px)';
+
+      const observer = new MutationObserver(() => {
+        if (gate.style.display !== 'none') {
+          requestAnimationFrame(() => {
+            gate.style.opacity = '1';
+            gate.style.transform = 'translateY(0)';
+          });
+        }
+      });
+      observer.observe(gate, { attributes: true, attributeFilter: ['style'] });
+
+      // Override ChatEngine to show gate via display block
+      const origClass = gate.classList;
+      Object.defineProperty(gate, 'classList', {
+        get() { return origClass; }
+      });
+    }
+  </script>
 </body>
 </html>

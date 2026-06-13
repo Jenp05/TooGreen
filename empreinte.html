@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empreinte Carbone — TooGreen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div>
+        <span>Too<em>Green</em></span>
+      </a>
+      <nav class="nav">
+        <a href="portefeuille.html" class="nav-link">Portefeuille Vert</a>
+        <a href="empreinte.html" class="nav-link active">Empreinte Carbone</a>
+        <a href="conseil.html" class="nav-link">Conseil Responsable</a>
+        <a href="assistant.html" class="nav-link">Assistant IA</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#" class="btn btn-ghost">Connexion</a>
+        <a href="#" class="btn btn-primary">S'inscrire</a>
+        <div class="lang-select" id="langSelect">
+          <button class="lang-btn" id="langBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span id="currentLang">FR</span>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" data-lang="fr" class="active">🇫🇷 Français</a>
+            <a href="#" data-lang="en">🇬🇧 English</a>
+          </div>
+        </div>
+        <button class="burger" id="burger"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="portefeuille.html">Portefeuille Vert</a>
+    <a href="empreinte.html">Empreinte Carbone</a>
+    <a href="conseil.html">Conseil Responsable</a>
+    <a href="assistant.html">Assistant IA</a>
+    <div class="mobile-menu-actions">
+      <a href="#" class="btn btn-ghost" style="width:100%;justify-content:center">Connexion</a>
+      <a href="#" class="btn btn-primary" style="width:100%;justify-content:center">S'inscrire</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="section-eyebrow">Empreinte Carbone</span>
+        <h1 class="display-lg" style="max-width:700px;margin:16px auto 20px">
+          Mesurez votre impact.<br><span style="color:var(--green-400)">Puis réduisez-le.</span>
+        </h1>
+        <p style="color:var(--text-secondary);max-width:500px;margin:0 auto 20px;font-size:1.05rem">
+          5 questions, 5 minutes. Notre calculateur ADEME vous donne une estimation précise de votre empreinte carbone annuelle.
+        </p>
+        <div style="display:flex;gap:20px;justify-content:center;font-size:.875rem;color:var(--text-muted)">
+          <span>✓ Gratuit &amp; anonyme</span>
+          <span>✓ Données ADEME</span>
+          <span>✓ Recommandations personnalisées</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ SECTION -->
+    <section style="padding:60px 0 100px">
+      <div class="container">
+
+        <!-- Quiz wrapper -->
+        <div id="quizWrapper">
+          <div class="quiz-container" id="quizContainer">
+            <!-- Rendered by QuizEngine in script.js -->
+            <div style="text-align:center;padding:60px 20px;color:var(--text-muted)">Chargement du quiz…</div>
+          </div>
+        </div>
+
+        <!-- Result (hidden until quiz complete) -->
+        <div class="quiz-result" id="quizResult"></div>
+
+      </div>
+    </section>
+
+    <!-- SOLUTIONS SECTION -->
+    <section id="solutions" style="background:var(--bg-surface);padding:100px 0">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Solutions</span>
+          <h2 class="display-md">Réduire son empreinte : par où commencer ?</h2>
+          <p class="text-muted" style="margin-top:14px">Les leviers les plus impactants classés par ordre de priorité.</p>
+        </div>
+
+        <div class="bento-grid" style="margin-top:60px">
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <h3>Rénover son logement</h3>
+            <p>L'isolation et une pompe à chaleur peuvent réduire votre empreinte énergétique de <strong style="color:var(--green-400)">40 à 60 %</strong>. Des aides comme MaPrimeRénov' financent jusqu'à 90 % des travaux.</p>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/></svg></div>
+            <h3>Changer ses transports</h3>
+            <p>Remplacer 1 vol court-courrier par le train économise <strong style="color:var(--green-400)">300 kg CO₂</strong>. Le vélo électrique quotidien économise jusqu'à 1,5 t/an vs voiture thermique.</p>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Adapter son alimentation</h3>
+            <p>Passer à un régime flexitarien réduit l'empreinte alimentaire de <strong style="color:var(--green-400)">600 kg CO₂/an</strong>. Le vegan peut atteindre -1,5 t par rapport à un régime carné quotidien.</p>
+          </div>
+
+          <div class="bento-card span-2 reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <h3>Investir vert pour compenser</h3>
+            <p>La compensation carbone via des actifs verts (forêts, projets renouvelables) permet de neutraliser les émissions incompressibles. Notre portefeuille propose des actifs certifiés Gold Standard qui évitent en moyenne <strong style="color:var(--green-400)">10 à 20 t CO₂ pour 10 000 €</strong> investis.</p>
+            <a href="portefeuille.html" class="btn btn-outline" style="margin-top:20px">Voir le portefeuille vert →</a>
+          </div>
+
+          <div class="bento-card reveal">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+            <h3>Consommer moins, mieux</h3>
+            <p>Acheter d'occasion, réparer, louer : adopter l'économie circulaire peut économiser <strong style="color:var(--green-400)">jusqu'à 800 kg CO₂/an</strong> sur votre consommation.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <h2 class="display-md">Passez à l'action avec un expert</h2>
+          <p>Nos conseillers vous aident à construire un plan de réduction personnalisé, adapté à votre mode de vie.</p>
+          <div class="cta-btns">
+            <a href="conseil.html" class="btn btn-primary btn-lg">Prendre un rendez-vous</a>
+            <a href="assistant.html" class="btn btn-outline btn-lg">Demander à l'IA</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TEAM -->
+  <section class="team">
+    <div class="container">
+      <div class="section-header reveal"><span class="section-eyebrow">L'équipe</span><h2 class="display-md">L'équipe derrière TooGreen</h2></div>
+      <div class="team-grid">
+        <div class="team-card reveal"><div class="team-avatar">JP</div><div class="team-name">Jean-Paul Vu</div><div class="team-role">CEO & Fondateur</div><p class="team-bio">Visionnaire de la finance verte, Jean-Paul croit que chaque euro investi peut changer le monde.</p><a href="https://www.linkedin.com/in/jean-paul-vu-a958512ba/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">GX</div><div class="team-name">Gabriel Xiang</div><div class="team-role">CFO & Co-fondateur</div><p class="team-bio">Expert en finance durable, Gabriel structure les modèles d'impact pour que rentabilité et écologie convergent.</p><a href="https://www.linkedin.com/in/gabriel-xiang-/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+        <div class="team-card reveal"><div class="team-avatar">UH</div><div class="team-name">Umar H.</div><div class="team-role">CTO & Co-fondateur</div><p class="team-bio">Architecte de la plateforme, Umar développe les outils IA et data pour mesurer et réduire votre impact.</p><a href="https://www.linkedin.com/in/umar-h-but3/" target="_blank" class="team-linkedin"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand"><a href="index.html" class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18" style="color:#000"><path d="M12 2C6.5 2 4 7 4 12c0 5.5 3.5 10 8 10s8-4.5 8-10c0-1-2-4-4-6-1 3-3 5-4 5z"/></svg></div><span>Too<em>Green</em></span></a><p style="margin-top:14px">La plateforme de référence pour investir et vivre de façon plus verte.</p></div>
+        <div class="footer-col"><h4>Plateforme</h4><ul><li><a href="portefeuille.html">Portefeuille Vert</a></li><li><a href="empreinte.html">Empreinte Carbone</a></li><li><a href="conseil.html">Conseil Responsable</a></li><li><a href="assistant.html">Assistant IA</a></li></ul></div>
+        <div class="footer-col"><h4>Légal</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Confidentialité</a></li><li><a href="#">CGU</a></li></ul></div>
+        <div class="footer-col"><h4>Suivez-nous</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">Newsletter</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 TooGreen. Tous droits réservés.</span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
