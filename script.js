@@ -11,6 +11,7 @@
 const i18n = {
   fr: {
     badge: "La finance verte, enfin accessible",
+    shortslogan: 'INVESTISSEZ,<br><span class="green">PROTÉGEZ</span>',
     h1a: "Investissez.", h1b: " Protégez.", h1c: "La planète vous remercie.",
     herosub: "TooGreen réunit portefeuille vert, calculateur d'empreinte carbone, conseil responsable et assistant IA écologique en une seule plateforme.",
     cta1: "Commencer gratuitement", cta2: "Calculer mon empreinte →",
@@ -56,6 +57,7 @@ const i18n = {
   },
   en: {
     badge: "Green finance, finally accessible",
+    shortslogan: 'INVEST,<br><span class="green">PROTECT</span>',
     h1a: "Invest.", h1b: " Protect.", h1c: "The planet thanks you.",
     herosub: "TooGreen brings together a green portfolio, carbon footprint calculator, responsible advice, and an eco AI assistant — all in one platform.",
     cta1: "Start for free", cta2: "Calculate my footprint →",
@@ -115,7 +117,7 @@ function applyLang(lang) {
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (dict[key] !== undefined) el.textContent = dict[key];
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
   });
 
   // Update lang button label
@@ -545,6 +547,7 @@ window.ChatEngine = (function() {
 })();
 
 /* ---------- Init on DOM ready ---------- */
+/* Note: globe init is handled by <script type="module"> in index.html */
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initBurger();

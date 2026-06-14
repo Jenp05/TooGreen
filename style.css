@@ -179,9 +179,9 @@ section { padding: 100px 0; }
   letter-spacing: -0.02em;
 }
 .logo-icon {
-  width: 34px; height: 34px;
-  background: var(--green-500);
-  border-radius: 9px;
+  width: 44px; height: 44px;
+  background: transparent;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,26 +374,125 @@ section { padding: 100px 0; }
   border-top: 1px solid var(--border);
 }
 
-/* ---------- HERO ---------- */
+/* ---------- HERO + GLOBE ---------- */
 .hero {
-  padding-top: calc(var(--header-h) + 80px);
-  padding-bottom: 100px;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Radial glow background */
-.hero::before {
+/* Rotating globe — fills entire hero backdrop */
+.globe-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.globe-canvas-wrap {
+  width: clamp(420px, 78vmin, 860px);
+  height: clamp(420px, 78vmin, 860px);
+  flex-shrink: 0;
+  pointer-events: none;
+  /* Mask fades in the TRANSPARENT area outside the sphere — never cuts into it */
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 34%, transparent 50%);
+  mask-image:         radial-gradient(circle at 50% 50%, black 34%, transparent 50%);
+}
+
+#earthGlobe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+  cursor: grab;
+}
+#earthGlobe:active { cursor: grabbing; }
+
+/* Soft edge vignette — fades globe naturally into dark bg */
+.globe-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 40% 42% at 50% 50%,
+    rgba(8,11,8,0.00) 0%,
+    rgba(8,11,8,0.00) 30%,
+    rgba(8,11,8,0.45) 58%,
+    rgba(8,11,8,0.85) 75%,
+    var(--bg-base)    88%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hero column layout — badge · slogan · globe gap · button · social */
+.hero-col {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: calc(var(--header-h) + 24px) 24px 52px;
+  width: 100%;
+  gap: 0;
+}
+
+/* Big hero slogan */
+.hero-big-slogan {
+  font-size: clamp(1.9rem, 4.8vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 60px rgba(0,0,0,0.9), 0 2px 8px rgba(0,0,0,0.7);
+}
+.hero-big-slogan .green {
+  color: var(--green-400);
+  text-shadow: 0 0 40px rgba(34,197,94,0.5), 0 2px 8px rgba(0,0,0,0.7);
+}
+
+/* Empty spacer — the globe fills this area */
+.globe-gap {
+  flex: 1;
+  min-height: 180px;
+  max-height: 500px;
+}
+
+/* Badge text-shadow for legibility over globe */
+.hero-badge, .hero-social-proof {
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+}
+
+/* Emerald glow pulse behind globe */
+.globe-backdrop::after {
   content: '';
   position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 700px;
-  background: radial-gradient(ellipse at center, rgba(34,197,94,0.12) 0%, transparent 70%);
+  inset: 0;
+  background: radial-gradient(
+    ellipse 44% 44% at 50% 50%,
+    rgba(34, 197, 94, 0.06) 0%,
+    transparent 68%
+  );
   pointer-events: none;
+  animation: pulse-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { opacity: 0.4; }
+  to   { opacity: 1;   }
 }
 
 .hero-badge {
@@ -1320,6 +1419,19 @@ section { padding: 100px 0; }
 }
 
 @media (max-width: 768px) {
+  .globe-canvas-wrap {
+    width: clamp(300px, 95vmin, 500px);
+    height: clamp(300px, 95vmin, 500px);
+  }
+  .globe-vignette {
+    background: radial-gradient(
+      ellipse 70% 70% at 50% 50%,
+      rgba(8,11,8,0.0)  0%,
+      rgba(8,11,8,0.55) 50%,
+      rgba(8,11,8,0.92) 75%,
+      var(--bg-base)    100%
+    );
+  }
   .nav, .header-actions .btn-ghost, .header-actions .btn-primary:not(.mobile-show) { display: none; }
   .burger { display: flex; }
   section { padding: 60px 0; }
